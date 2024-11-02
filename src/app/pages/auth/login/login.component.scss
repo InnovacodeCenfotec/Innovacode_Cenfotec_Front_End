@@ -13,7 +13,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según necesites */
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
   .login-card {
@@ -25,6 +25,34 @@
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
     background-color: #fff;
+  }
+  .icon-email {
+    top: 72%;
+    left: 645px;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+  }
+  .icon-password {
+    top: 55%;
+    left: 645px;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+  }
+  .forgot-password {
+    text-decoration: none;
+    text-align: end;
+  }
+
+  .social-link {
+    display: flex;
+    justify-content: center;
+    column-gap: 1.5rem;
+    line-height: normal;
+  }
+  .social-link-img {
+    width: 1.2rem;
   }
   @media screen and (min-width: 801px) and (max-width: 1500px) {
     padding: 20px 5%;
