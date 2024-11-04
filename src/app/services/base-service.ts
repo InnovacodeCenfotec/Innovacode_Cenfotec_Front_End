@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IResponse } from '../interfaces';
+import { IResponse, IUser } from '../interfaces';
 import { Injectable, inject } from '@angular/core';
 
 @Injectable({
@@ -52,6 +52,15 @@ export class BaseService<T> {
   
   public delCustomSource(customUrlSource: string): Observable<IResponse<T>> {
     return this.http.delete<IResponse<T>>(`${this.source}/${customUrlSource}`);
+  }
+
+  public addByEmail(user: IUser): Observable<IResponse<T>> {
+    return this.http.post<IResponse<T>>(this.source, user);
+  }
+  
+  public editByToken(token: string | undefined, data: {}): Observable<IResponse<T>> {
+    const url = `${this.source}/${token}`;
+    return this.http.put<IResponse<T>>(url, data);
   }
 
   public buildUrlParams (params: any = {}) {

@@ -73,3 +73,14 @@ export interface ISearch {
   totalElements?: number;
   totalPages?:number;
 }
+
+export interface IResetPasswordToken {
+  id?: number;
+  token?: string;
+  user?: IUser;
+  expiryDate?: Date;
+}
+
+export interface IResetPasswordRequest {
+  newPassword?: string;
+}

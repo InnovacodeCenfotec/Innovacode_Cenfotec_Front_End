@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-
-declare const google: any; // Declaramos google para evitar errores de tipo
+// import { AuthGoogleService } from '../../../services/auth-google.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,8 @@ declare const google: any; // Declaramos google para evitar errores de tipo
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent{
-  public loginError: string | undefined;
+  public loginError!: string;
+  loginStatus: boolean = false;
   @ViewChild('email') emailModel!: NgModel;
   @ViewChild('password') passwordModel!: NgModel;
 
@@ -26,6 +26,7 @@ export class LoginComponent{
   constructor(
     private router: Router,
     private authService: AuthService,
+    // private authGoogleService: AuthGoogleService
   ) {}
 
   public handleLogin(event: Event) {
@@ -39,8 +40,17 @@ export class LoginComponent{
     if (this.emailModel.valid && this.passwordModel.valid) {
       this.authService.login(this.loginForm).subscribe({
         next: () => this.router.navigateByUrl('/app/dashboard'),
-        error: (err: any) => (this.loginError = err.error.description),
+        error: (err: any) => {
+          console.log("error");
+          this.loginStatus = true;
+          this.loginError = err.error.description;
+        }
       });
     }
   }
+
+  // loginGoogle() {
+  //   this.authGoogleService.login();
+  // }
+
 }
