@@ -59,12 +59,6 @@ export interface IGame {
   updatedAt?: string;
 }
 
-export interface IOrder {
-  id?: number;
-  description?: string;
-  total?: number;
-}
-
 export interface ISearch {
   page?: number;
   size?: number;
@@ -72,4 +66,11 @@ export interface ISearch {
   pageSize?: number;
   totalElements?: number;
   totalPages?:number;
+}
+
+export interface IContact {
+  name?: string; 
+  email?: string;
+  subject?: string;
+  message?: string;
 }
