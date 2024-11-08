@@ -1,9 +1,9 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-// import { AuthGoogleService } from '../../../services/auth-google.service';
+import { AuthGoogleService } from '../../../services/auth-google.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent{
+  private authGoogleService = inject(AuthGoogleService);
   public loginError!: string;
   loginStatus: boolean = false;
   @ViewChild('email') emailModel!: NgModel;
@@ -26,7 +27,6 @@ export class LoginComponent{
   constructor(
     private router: Router,
     private authService: AuthService,
-    // private authGoogleService: AuthGoogleService
   ) {}
 
   public handleLogin(event: Event) {
@@ -49,8 +49,56 @@ export class LoginComponent{
     }
   }
 
-  // loginGoogle() {
-  //   this.authGoogleService.login();
-  // }
+  public loginGoogle() {
+    // this.authGoogleService.login();
+    this.authGoogleService.getProfile();
+    const profile = this.authGoogleService.getProfile();
+
+    if (profile) {
+      const userCredentials = {
+        email: profile['email'],
+        name: profile['given_name'],
+        lastname: profile['family_name'],
+        idToken: this.authGoogleService.getAccessToken()
+      };
+
+      this.authService.checkUserExists(userCredentials.email).subscribe({
+        next: (exists: any) => {
+          if (exists) {
+            this.authService.login({ email: userCredentials.email, password: '' }).subscribe({
+              next: () => this.router.navigateByUrl('/app/dashboard'),
+              error: (err) => {
+                this.loginStatus = true;
+                this.loginError = err.error.description;
+              }
+            });
+          } else {
+            this.authService.signup(userCredentials).subscribe({
+              next: () => {
+                this.authService.login({ email: userCredentials.email, password: '' }).subscribe({
+                  next: () => this.router.navigateByUrl('/app/dashboard'),
+                  error: (err) => {
+                    this.loginStatus = true;
+                    this.loginError = err.error.description;
+                  }
+                });
+              },
+              error: (err) => {
+                this.loginStatus = true;
+                this.loginError = err.error.description;
+              }
+            });
+          }
+        },
+        error: (err) => {
+          this.loginStatus = true;
+          this.loginError = 'Error checking user existence.';
+        }
+      });
+    } else {
+      this.loginStatus = true;
+      this.loginError = 'No profile found, login failed.';
+    }
+  }
 
 }

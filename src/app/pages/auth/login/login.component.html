@@ -59,7 +59,7 @@
 
             <!-- Submit Button -->
             <div class="form-group mb-0">
-              <button class="btn btn-purple btn-block w-100" type="submit" (click)="handleLogin($event)">
+              <button class="btn btn-purple btn-block w-100" type="button" (click)="handleLogin($event)">
                 Log in
               </button>
               <p *ngIf="loginError" class="text-danger">{{loginError}}</p>
@@ -68,8 +68,8 @@
               </div>
                 <div class="login__social">
                   <div class="login__social-links">
-                     <button class="login__social-link">
-                        <img src="../../../../assets/img/icon-google.svg" alt="image" class="login__social-img">
+                     <button class="login__social-link" type="submit">
+                        <img src="../../../../assets/img/icon-google.svg" alt="image" class="login__social-img" (click)="loginGoogle()">
                      </button>
       
                      <button href="#" class="login__social-link">

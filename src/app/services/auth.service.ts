@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IAuthority, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
-import { Observable, firstValueFrom, of, tap } from 'rxjs';
+import { Observable, firstValueFrom, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -124,4 +124,11 @@ export class AuthService {
     }          
     return allowedUser && isAdmin;
   }
+
+  public checkUserExists(email: string): Observable<boolean> {
+    return this.http.get<IUser | null>(`auth/filterByEmail/${email}`).pipe(
+      map((user: IUser | null) => !!user)
+    );
+  }
+  
 }
