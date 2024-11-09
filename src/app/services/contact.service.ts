@@ -11,9 +11,9 @@ import { AlertService } from './alert.service';
 })
 export class ContactService extends BaseService<IContact> {
   protected override source: string = 'contact/sendEmail'; 
-  private contactListSignal = signal<IContact[]>([]); //Lista vacias para que nuestro codigo de componente reacciona a los cambios
+  private contactListSignal = signal<IContact[]>([]); 
 
-  get contact$()  { //Obtener el valor de signal cada vez que cambia
+  get contact$()  {
     return this.contactListSignal;
   }
 
@@ -28,7 +28,7 @@ export class ContactService extends BaseService<IContact> {
   sendEmail(contact: IContact) {
     this.add(contact).subscribe({
       next: (response:any) => {
-        this.alertService.displayAlert('success', response.message, 'center', 'top', ['success-snackbar']);
+        this.alertService.displayAlert('success', 'Message ' + response.subject + ' sent' , 'center', 'top', ['success-snackbar']);
       },
       error: (err: any) => {
         this.alertService.displayAlert('error', 'An error occurred sending the email','center', 'top', ['error-snackbar']);
@@ -36,9 +36,5 @@ export class ContactService extends BaseService<IContact> {
       }
     })
   }
-
-  /*sendEmail(contactForm: any): Observable<any>  {
-    return this.http.post("http:/localhost:8080/api/contact/email", contactForm)
-  }*/
 
 }

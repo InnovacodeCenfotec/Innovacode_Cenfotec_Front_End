@@ -48,7 +48,6 @@ export const routes: Routes = [
         canActivate:[AdminRoleGuard],
         data: { 
           authorities: [
-            IRoleType.admin, 
             IRoleType.superAdmin
           ],
           name: 'Users',
@@ -60,7 +59,6 @@ export const routes: Routes = [
         component: DashboardComponent,
         data: { 
           authorities: [
-            IRoleType.admin, 
             IRoleType.superAdmin,
             IRoleType.user
           ],
@@ -73,7 +71,6 @@ export const routes: Routes = [
         component: ProfileComponent,
         data: { 
           authorities: [
-            IRoleType.admin, 
             IRoleType.superAdmin,
             IRoleType.user
           ],
@@ -86,7 +83,6 @@ export const routes: Routes = [
         component: ContactComponent,
         data: { 
           authorities: [
-            IRoleType.admin, 
             IRoleType.superAdmin,
             IRoleType.user,
           ],
