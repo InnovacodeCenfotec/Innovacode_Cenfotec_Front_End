@@ -124,11 +124,7 @@ export class AuthService {
     }          
     return allowedUser && isAdmin;
   }
-
-  public checkUserExists(email: string): Observable<boolean> {
-    return this.http.get<IUser | null>(`auth/filterByEmail/${email}`).pipe(
-      map((user: IUser | null) => !!user)
-    );
+  loginWithGoogle(idToken: string): Observable<any> {
+    return this.http.post("http://localhost:8080/auth/google-login", { idToken });
   }
-  
 }

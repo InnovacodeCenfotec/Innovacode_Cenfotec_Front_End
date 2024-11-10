@@ -27,7 +27,22 @@ export class LoginComponent{
   constructor(
     private router: Router,
     private authService: AuthService,
-  ) {}
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.authGoogleService.tokenReceived$.subscribe({
+      next: (idToken) => {
+        this.authService.loginWithGoogle(idToken).subscribe({
+          next: () => this.router.navigateByUrl('/app/dashboard'),
+          error: (err: any) => {
+            this.loginStatus = true;
+            this.loginError = 'Error al iniciar sesión con Google';
+          }
+        });
+      }
+    });
+  }
 
   public handleLogin(event: Event) {
     event.preventDefault();
@@ -50,55 +65,7 @@ export class LoginComponent{
   }
 
   public loginGoogle() {
-    // this.authGoogleService.login();
-    this.authGoogleService.getProfile();
-    const profile = this.authGoogleService.getProfile();
-
-    if (profile) {
-      const userCredentials = {
-        email: profile['email'],
-        name: profile['given_name'],
-        lastname: profile['family_name'],
-        idToken: this.authGoogleService.getAccessToken()
-      };
-
-      this.authService.checkUserExists(userCredentials.email).subscribe({
-        next: (exists: any) => {
-          if (exists) {
-            this.authService.login({ email: userCredentials.email, password: '' }).subscribe({
-              next: () => this.router.navigateByUrl('/app/dashboard'),
-              error: (err) => {
-                this.loginStatus = true;
-                this.loginError = err.error.description;
-              }
-            });
-          } else {
-            this.authService.signup(userCredentials).subscribe({
-              next: () => {
-                this.authService.login({ email: userCredentials.email, password: '' }).subscribe({
-                  next: () => this.router.navigateByUrl('/app/dashboard'),
-                  error: (err) => {
-                    this.loginStatus = true;
-                    this.loginError = err.error.description;
-                  }
-                });
-              },
-              error: (err) => {
-                this.loginStatus = true;
-                this.loginError = err.error.description;
-              }
-            });
-          }
-        },
-        error: (err) => {
-          this.loginStatus = true;
-          this.loginError = 'Error checking user existence.';
-        }
-      });
-    } else {
-      this.loginStatus = true;
-      this.loginError = 'No profile found, login failed.';
-    }
+    this.authGoogleService.login();
   }
 
 }

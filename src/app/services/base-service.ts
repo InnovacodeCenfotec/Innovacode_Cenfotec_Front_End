@@ -63,6 +63,10 @@ export class BaseService<T> {
     return this.http.put<IResponse<T>>(url, data);
   }
 
+  loginWithGoogle(idToken: string): Observable<any> {
+    return this.http.post(`${this.source}/`, { idToken });
+  }
+
   public buildUrlParams (params: any = {}) {
     let queryParams = new HttpParams();
     Object.keys(params).forEach(key => {
