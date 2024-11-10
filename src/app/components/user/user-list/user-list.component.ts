@@ -1,25 +1,50 @@
-import { Component, effect, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { IUser } from '../../../interfaces';
+import { IRole, IUser } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { UserFormComponent } from '../user-from/user-form.component';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { RoleService } from '../../../services/role.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    ModalComponent,
+    UserFormComponent
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
-export class UserListComponent {
+export class UserListComponent implements OnChanges {
   @Input() title: string  = '';
   @Input() users: IUser[] = [];
+  @Input() areActionsAvailable: boolean = true;
+  @Output() roles : IRole[] = [];
   @Output() callModalAction: EventEmitter<IUser> = new EventEmitter<IUser>();
   @Output() callDeleteAction: EventEmitter<IUser> = new EventEmitter<IUser>();
+
+  public selectedItem: IUser = {}
+  public userService = inject(UserService);
+  public roleService = inject(RoleService);
+  public modalService = inject(NgbModal);
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['areActionsAvailable']) {
+      console.log('areActionsAvailable', this.areActionsAvailable);
+    }
+  }
+
+  showDetailModal(item: IUser, modal:any) {
+    this.selectedItem = {...item};
+    modal.show(); 
+  }
+
+  onFormEventCalled (params: IUser) {
+    this.userService.update(params);
+    this.modalService.dismissAll();
+  }
 }
