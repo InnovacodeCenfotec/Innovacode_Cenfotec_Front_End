@@ -1,0 +1,117 @@
+// Colores base
+$primary-bg-color: #000000; // Fondo oscuro
+$primary-text-color: #ffffff; // Texto blanco
+$secondary-bg-color: #ff0000; // Color rojo para acentos o botones
+$footer-bg-color: #000000; // Fondo oscuro del footer
+
+.page-wrapper {
+  background-color: $primary-bg-color;
+  color: $primary-text-color;
+
+  .page-title h3 {
+    color: $primary-text-color;
+  }
+}
+
+// Topbar
+app-topbar {
+  background-color: $primary-bg-color;
+  color: $primary-text-color;
+
+  // Otros estilos personalizados según MagicBooth
+}
+
+// Sidebar
+.sidebar-wrapper {
+  background-color: $primary-bg-color;
+  color: $primary-text-color;
+
+  a {
+    color: $primary-text-color;
+    &:hover {
+      color: $secondary-bg-color;
+    }
+  }
+}
+
+// Footer
+.footer {
+  background-color: $footer-bg-color;
+  padding: 20px 0;
+  color: $primary-text-color;
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #4a90e2, #a64ca6);
+    -webkit-background-clip: text;
+    color: transparent;
+    min-width: 250px;
+  }
+
+  .social-container {
+    max-width: 250px;
+    display: flex;
+    justify-content: center; 
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-icons svg {
+    width: 20px;
+    height: 20px;
+    fill: #a64ca6;
+    cursor: pointer;
+  }
+
+  .copyright {
+    font-size: 14px;
+    color: #ffffff;
+    min-width: 250px;
+    text-align: right;
+    margin-bottom: 0;
+  }
+}
+
+// Botones y enlaces
+button, a {
+  background-color: $secondary-bg-color;
+  color: $primary-text-color;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($secondary-bg-color, 10%);
+  }
+}
+
+// Fondo y contenedores específicos
+.page-body,
+.page-body-wrapper,
+.container-fluid {
+  background-color: $primary-bg-color;
+}
+
+// Ajustar tamaño y separación según el estilo de MagicBooth
+.page-title {
+  padding: 20px 0;
+}
+
+.page-body-wrapper {
+  padding: 0 15px;
+}

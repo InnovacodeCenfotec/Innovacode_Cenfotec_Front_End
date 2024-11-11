@@ -29,12 +29,13 @@ export class UsersComponent {
   public fb: FormBuilder = inject(FormBuilder);
   userForm = this.fb.group({
     id: [''],
-    email: ['', Validators.required, Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     name: ['', Validators.required],
     lastname: ['', Validators.required],
     password: ['', Validators.required],
     updatedAt: ['', Validators.required],
-  })
+  });
+  
 
   constructor() {
     this.userService.search.page = 1;
