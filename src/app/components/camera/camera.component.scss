@@ -1,22 +1,128 @@
-.camera-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  webcam {
-    width: 100%;
-    height: auto;
-  }
-  
-  button {
-    margin: 10px;
-  }
-  
-  img {
-    margin-top: 10px;
-    max-width: 100%;
-  }
-  
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #1F2937; /* Grafito Profundo */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.camera-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.webcam-container {
+  max-width: 80%;  /* Adjust this value as needed */
+  max-height: 300px;  /* Adjust the height limit */
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column; /* Cambiar a columna para botones verticales */
+  justify-content: space-between;
+  width: 50%;
+}
+
+.buttons-container {
+  display: flex;
+  background-color: #6595F6;
+  flex-direction: column; /* Alineación vertical de los botones */
+  align-items: center;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2563EB; /* Azul Cobalto */
+}
+
+button.action-button {
+  background-color: #8F34E6; /* Morado Eléctrico */
+  border: none;
+}
+
+button.action-button:hover {
+  background-color: #7B69F1; /* Lavanda Intensa */
+}
+
+img {
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+.text-container {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.text-input {
+  width: 80%;
+  height: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #6595F6; /* Celeste Sereno */
+  background-color: #141414; /* Negro Carbón */
+  color: #FFFFFF; /* Blanco Puro */
+  font-size: 16px;
+}
+
+.text-input::placeholder {
+  color: #7B69F1; /* Lavanda Intensa */
+}
+
+.dropdown-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theme-selector {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #2563EB; /* Azul Cobalto */
+  color: #FFFFFF; /* Blanco Puro */
+  font-size: 16px;
+  border: none;
+}
+
+.theme-selector option {
+  background-color: #1F2937; /* Grafito Profundo */
+  color: #FFFFFF; /* Blanco Puro */
+}
+
+.theme-selector:hover {
+  background-color: #6595F6; /* Celeste Sereno */
+}
+
+.gallery-container {
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: #1F2937;
+  border-radius: 8px;
+}
+
+img {
+  max-width: 80%;  /* Adjust this value as needed */
+  max-height: 300px;  /* Adjust the height limit */
+  margin-top: 10px;
+}

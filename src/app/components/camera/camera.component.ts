@@ -22,7 +22,9 @@ export class CameraComponent {
   public errors: WebcamInitError[] = [];
 
   public webcamImage: WebcamImage | null = null;
-  public croppedImage: string | null = null; // Store the cropped image
+  public croppedImage: string | null = null; 
+  public textContent: string = '';  // Space for the text input
+  public selectedTheme: string = '';  // For the theme selection
 
   private trigger: Subject<void> = new Subject<void>();
 
@@ -51,6 +53,8 @@ export class CameraComponent {
     this.webcamImage = webcamImage;
     this.uploadImage(webcamImage);
   }
+
+
 
   public cameraWasSwitched(deviceId: string): void {
     console.log('active device: ' + deviceId);
@@ -102,6 +106,57 @@ export class CameraComponent {
           console.error('Upload error', error);
         }
       });
+  }
+
+
+  public generateBackground(): void {
+    console.log('Generating background...');
+    // Logic for generating background
+  }
+
+  public generateTheme(): void {
+    console.log('Generating theme...');
+    // Logic for generating theme
+  }
+
+  public generateAI(): void {
+    console.log('Generating content with AI...');
+    // Logic for AI generation
+  }
+
+  public downloadImage(): void {
+    if (this.webcamImage) {
+      const link = document.createElement('a');
+      link.href = this.webcamImage.imageAsDataUrl;
+      link.download = 'webcam-image.png';
+      link.click();
+    } else {
+      console.log('No image to download');
+    }
+  }
+
+  public shareImage(): void {
+    if (this.webcamImage) {
+      console.log('Sharing image...');
+      // Logic for sharing the image
+    } else {
+      console.log('No image to share');
+    }
+  }
+
+  public uploadImageFromFile(): void {
+    if (this.webcamImage) {
+      console.log('Uploading image...');
+      // Logic for sharing the image
+    } else {
+      console.log('No image to upload');
+    }
+  }
+
+  public onThemeChange(event: any): void {
+    this.selectedTheme = event.target.value;
+    console.log('Selected theme:', this.selectedTheme);
+    // Apply the theme (you can implement actual theme changes here)
   }
 }
 
