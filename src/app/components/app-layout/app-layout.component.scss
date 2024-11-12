@@ -1,8 +1,8 @@
 // Colores base
-$primary-bg-color: #000000; // Fondo oscuro
-$primary-text-color: #ffffff; // Texto blanco
-$secondary-bg-color: #ff0000; // Color rojo para acentos o botones
-$footer-bg-color: #000000; // Fondo oscuro del footer
+$primary-bg-color: #000000; 
+$primary-text-color: #ffffff;
+$secondary-bg-color: #ff0000;
+$footer-bg-color: #000000; 
 
 .page-wrapper {
   background-color: $primary-bg-color;
@@ -17,8 +17,6 @@ $footer-bg-color: #000000; // Fondo oscuro del footer
 app-topbar {
   background-color: $primary-bg-color;
   color: $primary-text-color;
-
-  // Otros estilos personalizados según MagicBooth
 }
 
 // Sidebar
