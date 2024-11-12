@@ -8,7 +8,8 @@ import { AuthService } from "../../services/auth.service";
   imports: [
     RouterLink
   ],
-  templateUrl: "./my-account.component.html",
+  templateUrl: './my-account.component.html',
+  styleUrl: './my-account.component.scss',
 })
 export class MyAccountComponent implements OnInit {
   public userName: string = '';

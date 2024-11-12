@@ -52,6 +52,7 @@ body[class="dark-only"] {
 
 html, body { 
   height: 100%; 
+  background-color: black;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -66,11 +67,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link {
   text-decoration: none;
+  background-color: black;
 }
 
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links {
   height: calc(93vh - 115px) !important;
+  background-color: black;
   left: -300px;
   z-index: 99;
   transition: color 1s ease;

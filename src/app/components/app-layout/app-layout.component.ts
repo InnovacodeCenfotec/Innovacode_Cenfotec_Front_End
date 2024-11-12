@@ -17,6 +17,7 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
     SvgIconComponent
   ],
   templateUrl: './app-layout.component.html',
+  styleUrl: './app-layout.component.scss',
 })
 export class AppLayoutComponent {
   public title?: string;
