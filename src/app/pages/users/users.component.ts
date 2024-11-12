@@ -43,8 +43,7 @@ export class UsersComponent implements OnInit {
     name: ['', Validators.required],
     lastname: ['', Validators.required],
     password: ['', Validators.required],
-    updatedAt: ['', Validators.required],
-    role: ['', Validators.required]
+    role: ['', Validators.required],
   })
 
   constructor() {
@@ -73,8 +72,8 @@ export class UsersComponent implements OnInit {
   callEdition(user: IUser) {
     this.userForm.controls['id'].setValue(user.id ? JSON.stringify(user.id) : '');
     this.userForm.controls['email'].setValue(user.email ? user.email : '');
-    this.userForm.controls['name'].setValue(user.name ? JSON.stringify(user.name) : '');
-    this.userForm.controls['lastname'].setValue(user.lastname ? JSON.stringify(user.lastname) : '');
+    this.userForm.controls['name'].setValue(user.name ? user.name : '');
+    this.userForm.controls['lastname'].setValue(user.lastname ? user.lastname : '');
     this.userForm.controls['password'].setValue(user.password ? JSON.stringify(user.password) : '');
     this.userForm.controls['role'].setValue(user.role ? JSON.stringify(user.role) : '');
     this.modalService.displayModal('md', this.addUsersModal);
