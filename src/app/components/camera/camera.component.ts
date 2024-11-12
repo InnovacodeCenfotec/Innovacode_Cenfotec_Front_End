@@ -16,15 +16,15 @@ export class CameraComponent {
   public multipleWebcamsAvailable = false;
   public deviceId!: string;
   public videoOptions: MediaTrackConstraints = {
-    width: { ideal: 1280 },
-    height: { ideal: 720 }
+    width: { ideal: 348 },
+    height: { ideal: 348 }
   };
   public errors: WebcamInitError[] = [];
 
-  public webcamImage: WebcamImage | null = null;
+  public webcamImages: WebcamImage[] = [];  // Lista de imágenes capturadas
   public croppedImage: string | null = null; 
-  public textContent: string = '';  // Space for the text input
-  public selectedTheme: string = '';  // For the theme selection
+  public textContent: string = '';  // Espacio para el texto ingresado
+  public selectedTheme: string = '';  // Para la selección del tema
 
   private trigger: Subject<void> = new Subject<void>();
 
@@ -50,11 +50,10 @@ export class CameraComponent {
 
   public handleImage(webcamImage: WebcamImage): void {
     console.info('received webcam image', webcamImage);
-    this.webcamImage = webcamImage;
+    // Agregar la nueva imagen a la lista de imágenes
+    this.webcamImages.push(webcamImage);
     this.uploadImage(webcamImage);
   }
-
-
 
   public cameraWasSwitched(deviceId: string): void {
     console.log('active device: ' + deviceId);
@@ -108,7 +107,6 @@ export class CameraComponent {
       });
   }
 
-
   public generateBackground(): void {
     console.log('Generating background...');
     // Logic for generating background
@@ -125,32 +123,32 @@ export class CameraComponent {
   }
 
   public downloadImage(): void {
-    if (this.webcamImage) {
+    /*if (this.webcamImage) {
       const link = document.createElement('a');
       link.href = this.webcamImage.imageAsDataUrl;
       link.download = 'webcam-image.png';
       link.click();
     } else {
       console.log('No image to download');
-    }
+    }*/
   }
 
   public shareImage(): void {
-    if (this.webcamImage) {
+    /*if (this.webcamImage) {
       console.log('Sharing image...');
       // Logic for sharing the image
     } else {
       console.log('No image to share');
-    }
+    }*/
   }
 
   public uploadImageFromFile(): void {
-    if (this.webcamImage) {
+    /*if (this.webcamImage) {
       console.log('Uploading image...');
       // Logic for sharing the image
     } else {
       console.log('No image to upload');
-    }
+    }*/
   }
 
   public onThemeChange(event: any): void {
@@ -159,4 +157,3 @@ export class CameraComponent {
     // Apply the theme (you can implement actual theme changes here)
   }
 }
-

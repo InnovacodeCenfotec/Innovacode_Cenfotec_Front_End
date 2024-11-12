@@ -1,55 +1,67 @@
-<div class="main-container">
+<div class="container py-5">
   <!-- Contenedor para la cámara, botones y tema -->
-  <div class="camera-section">
-    <div class="webcam-container">
-      <webcam [width]="videoWidth" [height]="videoHeight"
-              [trigger]="triggerObservable"
-              [videoOptions]="videoOptions"
-              (imageCapture)="handleImage($event)"
-              (initError)="handleInitError($event)"></webcam>
-    </div>
-
-    <!-- Botones y selector de tema -->
-    <div class="controls-container">
-      <div class="buttons-container">
-        <button class="action-button" (click)="triggerSnapshot()">Tomar Foto</button>
-        <button class="action-button" (click)="generateBackground()">Generar Fondo</button>
-        <button class="action-button" (click)="generateTheme()">Generar Tema</button>
-        <button class="action-button" (click)="generateAI()">Generar IA</button>
-        <button class="action-button" (click)="downloadImage()">Descargar</button>
-        <button class="action-button" (click)="shareImage()">Compartir</button>
-      </div>
-
-      <div class="dropdown-container">
-        <label for="themeSelector">Selecciona un Tema:</label>
-        <select id="themeSelector" class="theme-selector">
-          <option value="old-west">Viejo Oeste</option>
-          <option value="underwater">Debajo del Mar</option>
-          <option value="space">Espacio Exterior</option>
-        </select>
+  <div class="row justify-content-center">
+    <!-- Webcam Section -->
+    <div class="col-12 col-md-6 mb-4">
+      <div class="webcam-container">
+        <webcam [width]="videoWidth" [height]="videoHeight"
+                [trigger]="triggerObservable"
+                [videoOptions]="videoOptions"
+                (imageCapture)="handleImage($event)"
+                (initError)="handleInitError($event)"></webcam>
       </div>
     </div>
-  </div>
 
-  <!-- Imagen de la webcam -->
-  <div *ngIf="webcamImage">
-    <h3>Imagen de la Webcam</h3>
-    <img [src]="webcamImage.imageAsDataUrl"/>
-  </div>
+    <!-- Controls Section -->
+    <div class="col-12 col-md-6">
+      <div class="d-flex flex-column gap-3">
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" (click)="triggerSnapshot()">Tomar Foto</button>
+          <button class="btn btn-secondary" (click)="generateBackground()">Generar Fondo</button>
+          <button class="btn btn-success" (click)="generateTheme()">Generar Tema</button>
+          <button class="btn btn-info" (click)="generateAI()">Generar IA</button>
+          <button class="btn btn-warning" (click)="downloadImage()">Descargar</button>
+          <button class="btn btn-danger" (click)="shareImage()">Compartir</button>
+        </div>
 
-  <!-- Imagen recortada -->
-  <div *ngIf="croppedImage">
-    <h3>Imagen Recortada</h3>
-    <img [src]="croppedImage"/>
+        <div class="dropdown">
+          <label for="themeSelector" class="form-label">Seleccione el Tema:</label>
+          <select id="themeSelector" class="form-select">
+            <option value="old-west">Viejo Oeste</option>
+            <option value="underwater">Debajo del Mar</option>
+            <option value="space">Espacio Exterior</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Campo de texto debajo de la cámara -->
-  <div class="text-container">
-    <textarea class="text-input" placeholder="Agrega texto aquí... (500 caracteres como mínimo)" maxlength="1000"></textarea>
+  <div class="mt-4">
+    <textarea class="form-control" placeholder="Agrega texto aquí... (500 caracteres como mínimo)" maxlength="1000"></textarea>
   </div>
 
   <!-- Galería virtual al final -->
-  <div class="gallery-container">
+  <div class="mt-5">
     <!-- Aquí iría tu galería virtual (si hay imágenes o contenido adicional que mostrar) -->
   </div>
 </div>
+
+<!-- Imagen recortada -->
+<div class="mt-4" *ngIf="croppedImage">
+  <h3>Imagen Recortada</h3>
+  <img [src]="croppedImage" class="img-fluid rounded"/>
+</div>
+
+<!-- Galería de imágenes capturadas -->
+<div class="mt-5">
+  <h3>Imágenes Capturadas</h3>
+  <div class="row">
+    <div class="col-4" *ngFor="let image of webcamImages; let i = index">
+      <img [src]="image.imageAsDataUrl" class="img-fluid rounded mb-2" [alt]="'Imagen ' + (i + 1)"/>
+    </div>
+  </div>
+</div>
+
+
+
