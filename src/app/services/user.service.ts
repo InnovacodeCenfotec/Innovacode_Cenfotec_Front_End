@@ -1,8 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { ISearch, IUser } from '../interfaces';
-import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AlertService } from './alert.service';
+import { AuthService } from './auth.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import { AlertService } from './alert.service';
 export class UserService extends BaseService<IUser> {
   protected override source: string = 'users';
   private userListSignal = signal<IUser[]>([]);
+
   get users$() {
     return this.userListSignal;
   }
@@ -37,8 +39,9 @@ export class UserService extends BaseService<IUser> {
   save(user: IUser) {
     this.add(user).subscribe({
       next: (response: any) => {
+        this.userListSignal.update((users: IUser[]) => [ response, ...users]); //added
         this.alertService.displayAlert('success', response.message, 'center', 'top', ['success-snackbar']);
-        this.getAll();
+        //this.getAll();
       },
       error: (err: any) => {
         this.alertService.displayAlert('error', 'An error occurred adding the user','center', 'top', ['error-snackbar']);

@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <!-- Form Column -->
+    <div class="col-md-6">
+      <form [formGroup]="contactForm" class="row p-4">
+        <div class="mb-3">
+          <h1>Contact Us</h1>
+        </div>
+
+        <div class="d-flex align-items-center mb-3">
+          <div class="form-group px-1">
+            <label for="name" class="form-label mb-2"> Name </label>
+            <input id="name" formControlName="name" type="text" class="form-control">
+            <p *ngIf="contactForm.controls['name'].invalid && (contactForm.controls['name'].dirty || contactForm.controls['name'].touched)"
+              class="text-danger my-1">Name is required</p>
+          </div>
+          <div class="form-group px-1">
+            <label for="email" class="form-label mb-2"> Email Address</label>
+            <input id="email" formControlName="email" type="text" class="form-control">
+            <p *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+              class="text-danger my-1">Email is required</p>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="subject" class="form-label mb-2"> Subject </label>
+          <input id="subject" formControlName="subject" type="text" class="form-control">
+          <p *ngIf="contactForm.controls['subject'].invalid && (contactForm.controls['subject'].dirty || contactForm.controls['subject'].touched)"
+            class="text-danger my-1">Subject is required</p>
+        </div>
+
+        <div class="form-group mb-5">
+          <label for="message" class="form-label mb-2"> Message </label>
+          <textarea id="message" formControlName="message" class="form-control"></textarea>
+          <p *ngIf="contactForm.controls['message'].invalid && (contactForm.controls['message'].dirty || contactForm.controls['message'].touched)"
+            class="text-danger my-1">Message is required</p>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button (click)="sendEmail()" [disabled]="contactForm.invalid" class="btn btn-purple" type="button">Send Email</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact Information Column -->
+    <div class="col-md-6">
+      <div class="p-4">
+        <h4>Our info!</h4>
+        <div class="contact-item mb-3">
+          <i class="bi bi-telephone me-2"></i>
+          <span>+506 87-31-93-23</span>
+        </div>
+        <div class="contact-item mb-3">
+          <i class="bi bi-envelope me-2"></i> 
+          <span>innovacodegroupcr&#64;gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
