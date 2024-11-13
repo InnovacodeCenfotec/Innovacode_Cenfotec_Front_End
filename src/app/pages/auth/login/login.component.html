@@ -10,10 +10,10 @@
         <div class="login-main">
           <form autocomplete="off" #frm="ngForm">
             <div class="mb-3">
-              <h2>Log in to your account</h2>
+              <h2>Inicia sesión</h2>
             </div>
             <div class="form-group mb-3 position-relative">
-              <label for="email" class="form-label mb-1">Email Address</label>
+              <label for="email" class="form-label mb-1">Correo Electronico</label>
               <input
                 #email="ngModel"
                 type="text"
@@ -34,7 +34,7 @@
             </div>
             
             <div class="form-group mb-4 position-relative">
-              <label for="password" class="form-label mb-1">Password</label>
+              <label for="password" class="form-label mb-1">Contraseña</label>
               <input
                 #password="ngModel"
                 type="password"
@@ -52,7 +52,7 @@
               <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
                 Set a valid password
               </div>
-              <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+              <a href="/forgot-password" class="forgot-password">Olvidaste tu contraseña?</a>
             </div>
             
 
@@ -63,7 +63,7 @@
               </button>
               <p *ngIf="loginError" class="text-danger">{{loginError}}</p>
               <div class="text-center" style="padding-top: 15px;">
-                <h4>OR CONTINUE WITH</h4>
+                <h4>O CONTIUNA CON</h4>
               </div>
               <div class="d-flex justify-content-center mb-3">
                 <button type="button" class="btn btn-purple btn-sm mx-1 d-flex align-items-center" aria-label="Sign up with Google" (click)="loginGoogle()">
@@ -83,7 +83,7 @@
                 </button>                         
               </div>
               </div>
-            <p class="text-center">Don't have an account? <a href="/signup">Create account</a></p>
+            <p class="text-center">No tienes una cuenta? <a href="/signup">Crea una</a></p>
           </form>
         </div>
       </div>
