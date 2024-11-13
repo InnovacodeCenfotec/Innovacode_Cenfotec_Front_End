@@ -51,7 +51,7 @@ export const routes: Routes = [
           authorities: [
             IRoleType.superAdmin
           ],
-          name: 'Users',
+          name: 'Usarios',
           showInSidebar: true
         }
       },
@@ -64,7 +64,7 @@ export const routes: Routes = [
             IRoleType.user
           ],
           name: 'Dashboard',
-          showInSidebar: true
+          showInSidebar: false
         }
       },
       {
@@ -87,7 +87,7 @@ export const routes: Routes = [
             IRoleType.superAdmin,
             IRoleType.user,
           ],
-          name: 'Contact Us',
+          name: 'Contactenos',
           showInSidebar: true
         }
       },
@@ -99,7 +99,7 @@ export const routes: Routes = [
             IRoleType.superAdmin,
             IRoleType.user,
           ],
-          name: 'camara',
+          name: 'Camara',
           showInSidebar: true
         }
       },

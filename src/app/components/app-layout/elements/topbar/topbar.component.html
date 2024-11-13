@@ -1,14 +1,9 @@
 <header class="header p-6 ms-auto">
   <div class="container nav-menus">
-    <h1 class="logo">MagicBooth</h1>
+    <a routerLink="/app/dashboard"><h1 class="logo">MagicBooth</h1></a>
     <nav>
       <ul>
-        <li><a href="#features">Características</a></li>
-        <li><a href="#gallery">Galería</a></li>
-        <li><a href="#testimonials">Testimonios</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a routerLink="/app/camara">Cámara</a></li>
-        <li><a routerLink="/app/contact">Contactanos</a></li>
+      
         @for (route of permittedRoutes; track $index) {
           @if (route.data && route.data['showInSidebar']) {
           <li class="sidebar-list">
