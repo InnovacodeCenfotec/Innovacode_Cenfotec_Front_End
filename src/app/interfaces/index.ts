@@ -77,6 +77,7 @@ export interface IResetPasswordToken {
 
 export interface IResetPasswordRequest {
   newPassword?: string;
+}
 export interface IContact {
   name?: string; 
   email?: string;

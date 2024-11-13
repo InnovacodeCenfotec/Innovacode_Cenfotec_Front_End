@@ -19,11 +19,12 @@ export const appConfig: ApplicationConfig = {
     provideOAuthClient(),
     provideHttpClient(
       withInterceptors([
-    provideHttpClient(withInterceptors([
         baseUrlInterceptor,
         accessTokenInterceptor,
-        //handleErrorsInterceptor
-    ])), provideAnimationsAsync(),
-    provideAnimations()
-]
+        handleErrorsInterceptor,
+      ])
+    ),
+    provideAnimationsAsync(),
+    provideAnimations(),
+  ],
 };
