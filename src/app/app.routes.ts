@@ -11,6 +11,7 @@ import { GuestGuard } from './guards/guest.guard';
 import { IRoleType } from './interfaces';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { CameraComponent } from './components/camera/camera.component';
 
 export const routes: Routes = [
   {
@@ -90,7 +91,18 @@ export const routes: Routes = [
           showInSidebar: true
         }
       },
-    
+      {
+        path: 'camara',
+        component: CameraComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'camara',
+          showInSidebar: true
+        }
+      },
     ],
   },
 ];
