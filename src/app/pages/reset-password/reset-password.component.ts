@@ -30,11 +30,6 @@ export class ResetPasswordComponent {
         };
         this.resetPasswordService.resetPassword(this.sendForm.token, request).subscribe({
           next: () => {
-            this.validRequest = true;
-            this.requestError = false;
-            setTimeout(() => {
-              this.router.navigateByUrl('/login')
-            }, 1000);
           },
           error: (err: any) => {
             console.error('Error in reset password component:', err);
@@ -42,6 +37,11 @@ export class ResetPasswordComponent {
             this.validRequest = false;
           }
         });
+        this.validRequest = true;
+        this.requestError = false;
+        setTimeout(() => {
+          this.router.navigateByUrl('/login')
+        }, 1000);
       } else {
         this.requestError = true;
       }
