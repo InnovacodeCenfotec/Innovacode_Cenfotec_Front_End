@@ -16,15 +16,14 @@ export class CameraComponent {
   public multipleWebcamsAvailable = false;
   public deviceId!: string;
   public videoOptions: MediaTrackConstraints = {
-    width: { ideal: 348 },
-    height: { ideal: 348 }
+
   };
   public errors: WebcamInitError[] = [];
 
-  public webcamImages: WebcamImage[] = [];  // Lista de imágenes capturadas
+  public webcamImages: WebcamImage[] = [];  
   public croppedImage: string | null = null; 
-  public textContent: string = '';  // Espacio para el texto ingresado
-  public selectedTheme: string = '';  // Para la selección del tema
+  public textContent: string = '';  
+  public selectedTheme: string = ''; 
 
   private trigger: Subject<void> = new Subject<void>();
 
@@ -52,7 +51,6 @@ export class CameraComponent {
     console.info('received webcam image', webcamImage);
     // Agregar la nueva imagen a la lista de imágenes
     this.webcamImages.push(webcamImage);
-    this.uploadImage(webcamImage);
   }
 
   public cameraWasSwitched(deviceId: string): void {
@@ -88,72 +86,17 @@ export class CameraComponent {
     return new Blob([u8arr], { type: mime });
   }
 
-  private uploadImage(webcamImage: WebcamImage): void {
-    const formData = new FormData();
-    formData.append('image', this.dataURLtoBlob(webcamImage.imageAsDataUrl));
-
-    const headers = new HttpHeaders().set('enctype', 'multipart/form-data');
-
-    this.http.post('api/yolo/detect', formData, { headers, responseType: 'blob' })
-      .subscribe({
-        next: (response: Blob) => {
-          const urlCreator = window.URL || window.webkitURL;
-          this.croppedImage = urlCreator.createObjectURL(response);
-          console.log('Upload success');
-        },
-        error: (error) => {
-          console.error('Upload error', error);
-        }
-      });
-  }
-
-  public generateBackground(): void {
-    console.log('Generating background...');
-    // Logic for generating background
-  }
-
-  public generateTheme(): void {
-    console.log('Generating theme...');
-    // Logic for generating theme
-  }
-
-  public generateAI(): void {
-    console.log('Generating content with AI...');
-    // Logic for AI generation
-  }
 
   public downloadImage(): void {
-    /*if (this.webcamImage) {
+    if (this.webcamImages.length > 0) {
+      const latestImage = this.webcamImages[this.webcamImages.length - 1]; 
       const link = document.createElement('a');
-      link.href = this.webcamImage.imageAsDataUrl;
-      link.download = 'webcam-image.png';
+      link.href = latestImage.imageAsDataUrl;
+      link.download = 'magicbooth-webcam-image.png';
       link.click();
     } else {
       console.log('No image to download');
-    }*/
+    }
   }
 
-  public shareImage(): void {
-    /*if (this.webcamImage) {
-      console.log('Sharing image...');
-      // Logic for sharing the image
-    } else {
-      console.log('No image to share');
-    }*/
-  }
-
-  public uploadImageFromFile(): void {
-    /*if (this.webcamImage) {
-      console.log('Uploading image...');
-      // Logic for sharing the image
-    } else {
-      console.log('No image to upload');
-    }*/
-  }
-
-  public onThemeChange(event: any): void {
-    this.selectedTheme = event.target.value;
-    console.log('Selected theme:', this.selectedTheme);
-    // Apply the theme (you can implement actual theme changes here)
-  }
 }

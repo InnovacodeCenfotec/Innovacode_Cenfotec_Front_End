@@ -1,72 +1,52 @@
-<div class="dashboard">
+<div class="camara">
+  <section class="hero">
+    <h2 class="section-title text-center mb-5">Captura y Personalización</h2>
 
-    <!-- Webcam and Controls Section -->
-    <section class="features-section container py-5">
-      <h2 class="section-title text-center mb-5">Captura y Personalización</h2>
-      
-      <div class="row justify-content-center">
-        
-        <!-- Webcam Section -->
-        <div class="col-12 col-md-6 mb-4">
-          <div class="webcam-container">
-            <webcam [width]="videoWidth" [height]="videoHeight"
-                    [trigger]="triggerObservable"
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 mb-4">
+        <div class="d-block mx-auto mb-4">
+          <webcam   [trigger]="triggerObservable"
                     [videoOptions]="videoOptions"
                     (imageCapture)="handleImage($event)"
-                    (initError)="handleInitError($event)"></webcam>
-          </div>
-        </div>
-        
-        <!-- Controls Section -->
-        <div class="col-12 col-md-6">
-          <div class="d-flex flex-column gap-3">
-            <div class="d-grid gap-2">
-              <button (click)="triggerSnapshot()">Tomar Foto</button>
-              <button (click)="generateBackground()">Generar Fondo</button>
-              <button (click)="generateTheme()">Generar Tema</button>
-              <button (click)="generateAI()">Generar IA</button>
-              <button (click)="downloadImage()">Descargar</button>
-              <button (click)="shareImage()">Compartir</button>
-            </div>
-            <div class="dropdown mt-3">
-              <label for="themeSelector" class="form-label">Seleccione el Tema:</label>
-              <select id="themeSelector" class="form-select">
-                <option value="old-west">Viejo Oeste</option>
-                <option value="underwater">Debajo del Mar</option>
-                <option value="space">Espacio Exterior</option>
-              </select>
-            </div>
-          </div>
+                    (initError)="handleInitError($event)">
+          </webcam>
         </div>
       </div>
-    </section>
-  
-    <!-- Image Text Area -->
-    <section class="container py-5">
-      <div class="row">
-        <div class="col-12">
-          <textarea class="form-control" placeholder="Agrega texto aquí... (500 caracteres como mínimo)" maxlength="1000"></textarea>
-        </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-3 d-flex flex-column align-items-center gap-3 mb-4">
+        <button type="button" (click)="triggerSnapshot()" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-camera2" viewBox="0 0 16 16">
+            <path d="M5 8c0-1.657 2.343-3 4-3V4a4 4 0 0 0-4 4"></path>
+            <path d="M12.318 3h2.015C15.253 3 16 3.746 16 4.667v6.666c0 .92-.746 1.667-1.667 1.667h-2.015A5.97 5.97 0 0 1 9 14a5.97 5.97 0 0 1-3.318-1H1.667C.747 13 0 12.254 0 11.333V4.667C0 3.747.746 3 1.667 3H2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1h.682A5.97 5.97 0 0 1 9 2c1.227 0 2.367.368 3.318 1M2 4.5a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0M14 8A5 5 0 1 0 4 8a5 5 0 0 0 10 0"></path>
+          </svg>
+          Tomar Foto
+        </button>
+
+        <button (click)="downloadImage()" class="btn btn-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill" viewBox="0 0 16 16">
+            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0"></path>
+          </svg>
+          Descargar
+        </button>
       </div>
-    </section>
-  
-    <!-- Captured Images Gallery -->
-    <section id="gallery" class="gallery-section container py-5">
-      <h2 class="gallery-title text-center">Galería de Imágenes Capturadas</h2>
-      <div class="row mt-4">
-        <div class="col-4" *ngFor="let image of webcamImages; let i = index">
-          <img [src]="image.imageAsDataUrl" class="img-fluid rounded mb-2" [alt]="'Imagen ' + (i + 1)"/>
-        </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery-section">
+    <h2 class="gallery-title text-center">Galería de Imágenes Capturadas</h2>
+    <div class="row mt-4">
+      <div class="col-4" *ngFor="let image of webcamImages; let i = index">
+        <img [src]="image.imageAsDataUrl" class="img-fluid rounded mb-2" [alt]="'Imagen ' + (i + 1)"/>
       </div>
-    </section>
-  
-    <!-- Cropped Image Section -->
-    <section class="container py-5" *ngIf="croppedImage">
-      <h3 class="text-center">Imagen Recortada</h3>
-      <div class="text-center">
-        <img [src]="croppedImage" class="img-fluid rounded"/>
-      </div>
-    </section>
-  
-  
-  </div>
+    </div>
+  </section>
+
+  <section class="container" *ngIf="croppedImage">
+    <h3 class="text-center">Imagen Recortada</h3>
+    <div class="text-center">
+      <img [src]="croppedImage" class="img-fluid rounded"/>
+    </div>
+  </section>
+</div>

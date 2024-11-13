@@ -1,4 +1,4 @@
-.dashboard {
+.camara {
     min-height: 100vh;
     background-color: #1a1a1a;
     color: white;
@@ -6,22 +6,22 @@
     .hero {
         text-align: center;
         padding: 5rem 2rem;
-        background: linear-gradient(to bottom, #000000, #111828); // Degradado oscuro para el fondo
+        background: linear-gradient(to bottom, #000000, #111828);
         color: white;
         font-family: 'Arial', sans-serif;
       h2 {
         font-size: 3rem;
         font-weight: bold;
-        color: #ffffff; // Blanco para el título
+        color: #ffffff;
         margin-bottom: 1.5rem;
       }
       p {
         font-size: 1.25rem;
-        color: #f4f4f4; // Gris claro para el subtítulo
+        color: #f4f4f4; 
         margin-bottom: 2rem;
       }
       button {
-        background-color: #8F34E6; // Morado, color principal de MagicBooth
+        background-color: #8F34E6; 
         padding: 0.75rem 3rem;
         border-radius: 50px;
         font-size: 1.2rem;
@@ -31,9 +31,15 @@
         transition: background-color 0.3s;
   
         &:hover {
-          background-color: #7a2cc4; // Un tono morado más oscuro para el hover
+          background-color: #7a2cc4; 
         }
       }
+    }
+
+    .webcam-container {
+      width: 100%;      /* Ocupa todo el ancho del contenedor */
+      max-width: 600px; /* Establece un ancho máximo opcional */
+      height: auto;     /* Ajusta la altura automáticamente */
     }
   
     button {
