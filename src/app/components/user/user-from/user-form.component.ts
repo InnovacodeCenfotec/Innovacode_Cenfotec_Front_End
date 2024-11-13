@@ -34,7 +34,6 @@ export class UserFormComponent implements OnInit {
       name: this.userForm.controls['name'].value,
       lastname: this.userForm.controls['lastname'].value,
       password: this.userForm.controls['password'].value,
-      updatedAt: new Date().toISOString(), // Convert date to ISO string format
       role: this.userForm.controls['role'].value
     }
     if(this.userForm.controls['id'].value) {
