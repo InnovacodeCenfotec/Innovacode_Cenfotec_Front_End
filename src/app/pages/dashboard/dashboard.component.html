@@ -81,13 +81,13 @@
       
           <div class="faq-item" (click)="toggleAnswer(1)" [ngClass]="{ active: activeQuestion === 1 }">
             <div class="faq-question-container">
-              <h3 class="faq-question">¿Cómo funciona MagicBooth?</h3>
+              <h3 class="faq-question">¿Cómo configuro la cabina de fotos?</h3>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                 <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
               </svg>
             </div>
             <p class="faq-answer" *ngIf="activeQuestion === 1">
-              MagicBooth utiliza inteligencia artificial y realidad aumentada para transformar tus fotos y agregar efectos únicos. Solo sube una foto y personalízala a tu gusto.
+              Para configurar la cabina, debes conectar la cámara, configurar el software y probar las impresiones. Consulta el manual para obtener detalles paso a paso.
             </p>
           </div>
       
@@ -97,13 +97,13 @@
             [ngClass]="{ active: activeQuestion === 2 }"
           >
           <div class="faq-question-container">
-            <h3 class="faq-question">¿Es gratis usar la aplicación?</h3>
+            <h3 class="faq-question">¿Cómo comparto las fotos en redes sociales?</h3>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
               <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
             </svg>
           </div>
             <p class="faq-answer" *ngIf="activeQuestion === 2">
-              Sí, MagicBooth ofrece una versión gratuita con opciones básicas. También tenemos planes premium que ofrecen características avanzadas.
+              Nuestra cabina está integrada con redes sociales populares. Puedes activar el acceso a compartir en la configuración de redes sociales
             </p>
           </div>
       
@@ -120,6 +120,22 @@
           </div>
             <p class="faq-answer" *ngIf="activeQuestion === 3">
               Puedes usar MagicBooth en dispositivos móviles y en la web. Nuestra aplicación es compatible con iOS y Android.
+            </p>
+          </div>
+
+          <div
+            class="faq-item"
+            (click)="toggleAnswer(4)"
+            [ngClass]="{ active: activeQuestion === 4 }"
+          >
+          <div class="faq-question-container">
+            <h3 class="faq-question">¿Cómo resuelvo problemas de conexión?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+          </div>
+            <p class="faq-answer" *ngIf="activeQuestion === 3">
+              Reinicia el dispositivo y verifica la conexión Wi-Fi o Ethernet. Consulta el soporte técnico si el problema persiste.
             </p>
           </div>
         </div>
