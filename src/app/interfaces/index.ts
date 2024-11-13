@@ -13,6 +13,7 @@ export interface IUser {
   lastname?: string;
   email?: string;
   password?: string;
+  confirmPassword?: string;
   active?: boolean;
   createdAt?: string;
   updatedAt?: string;
@@ -36,7 +37,6 @@ export enum IFeedbackStatus {
 }
 
 export enum IRoleType {
-  admin = "ROLE_ADMIN",
   user = "ROLE_USER",
   superAdmin = 'ROLE_SUPER_ADMIN'
 }
@@ -59,12 +59,6 @@ export interface IGame {
   updatedAt?: string;
 }
 
-export interface IOrder {
-  id?: number;
-  description?: string;
-  total?: number;
-}
-
 export interface ISearch {
   page?: number;
   size?: number;
@@ -83,4 +77,9 @@ export interface IResetPasswordToken {
 
 export interface IResetPasswordRequest {
   newPassword?: string;
+export interface IContact {
+  name?: string; 
+  email?: string;
+  subject?: string;
+  message?: string;
 }

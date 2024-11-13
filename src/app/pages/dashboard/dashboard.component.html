@@ -1,1 +1,157 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Transforma tus fotos con IA y AR</h2>
+      <p>Descubre el poder de MagicBooth: el photobooth virtual que revoluciona tus eventos</p>
+      <button>Prueba Gratis</button>
+    </section>
+  
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+          <h2 class="section-title">Características Clave</h2>      
+          <div class="features-grid">
+            <div class="feature-item">
+              <i class="fa-solid fa-magic feature-icon"></i>
+              <h3 class="feature-title">Edición Mágica</h3>
+              <p class="feature-description">Transforma tus fotos con efectos de magia y realidad aumentada.</p>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-share-nodes feature-icon"></i>
+              <h3 class="feature-title">Compartir Fácilmente</h3>
+              <p class="feature-description">Comparte tus fotos en redes sociales de forma sencilla y rápida.</p>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-user-shield feature-icon"></i>
+              <h3 class="feature-title">Privacidad y Seguridad</h3>
+              <p class="feature-description">Protege tus datos personales y fotos con seguridad avanzada.</p>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-cloud-upload-alt feature-icon"></i>
+              <h3 class="feature-title">Almacenamiento en la Nube</h3>
+              <p class="feature-description">Guarda tus fotos de manera segura en la nube y accede a ellas en cualquier momento.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+  
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div>
+            <h2 class="gallery-title">Galería de Ejemplos</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" *ngFor="let image of images">
+              <img [src]="image.src" [alt]="image.alt" class="gallery-image" />
+            </div>
+        </div>
+    </section>
+  
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+          <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-item">
+                <p class="testimonial-text">"MagicBooth transformó mis fotos de una forma impresionante. ¡Me encanta!"</p>
+                <h3 class="testimonial-name">Juan Pérez</h3>
+                <p class="testimonial-profesion">Marketer</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">"La mejor app para fotos creativas y divertidas. ¡Altamente recomendada!"</p>
+                <h3 class="testimonial-name">Ana Gómez</h3>
+                <p class="testimonial-profesion">Diseñadora de Eventos</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">"Excelente interfaz y resultados de alta calidad. MagicBooth es única."</p>
+                <h3 class="testimonial-name">Carlos Ruiz</h3>
+                <p class="testimonial-profesion">Fotógrafo Profesional</p>
+            </div>
+          </div>
+        </div>
+    </section>      
+  
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+          <h2 class="section-title">Preguntas Frecuentes</h2>
+      
+          <div class="faq-item" (click)="toggleAnswer(1)" [ngClass]="{ active: activeQuestion === 1 }">
+            <div class="faq-question-container">
+              <h3 class="faq-question">¿Cómo configuro la cabina de fotos?</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+            </div>
+            <p class="faq-answer" *ngIf="activeQuestion === 1">
+              Para configurar la cabina, debes conectar la cámara, configurar el software y probar las impresiones. Consulta el manual para obtener detalles paso a paso.
+            </p>
+          </div>
+      
+          <div
+            class="faq-item"
+            (click)="toggleAnswer(2)"
+            [ngClass]="{ active: activeQuestion === 2 }"
+          >
+          <div class="faq-question-container">
+            <h3 class="faq-question">¿Cómo comparto las fotos en redes sociales?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </div>
+            <p class="faq-answer" *ngIf="activeQuestion === 2">
+              Nuestra cabina está integrada con redes sociales populares. Puedes activar el acceso a compartir en la configuración de redes sociales
+            </p>
+          </div>
+      
+          <div
+            class="faq-item"
+            (click)="toggleAnswer(3)"
+            [ngClass]="{ active: activeQuestion === 3 }"
+          >
+          <div class="faq-question-container">
+            <h3 class="faq-question">¿En qué dispositivos puedo usar MagicBooth?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+          </div>
+            <p class="faq-answer" *ngIf="activeQuestion === 3">
+              Puedes usar MagicBooth en dispositivos móviles y en la web. Nuestra aplicación es compatible con iOS y Android.
+            </p>
+          </div>
+
+          <div
+            class="faq-item"
+            (click)="toggleAnswer(4)"
+            [ngClass]="{ active: activeQuestion === 4 }"
+          >
+          <div class="faq-question-container">
+            <h3 class="faq-question">¿Cómo resuelvo problemas de conexión?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+          </div>
+            <p class="faq-answer" *ngIf="activeQuestion === 4">
+              Reinicia el dispositivo y verifica la conexión Wi-Fi o Ethernet. Consulta el soporte técnico si el problema persiste.
+            </p>
+          </div>
+        </div>
+    </section>
+      
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="ready-section">
+            <h2>¿Listo para transformar tus eventos?</h2>
+            <p>
+            Lleva la experiencia de MagicBooth a tu próximo evento y sorprende a tus invitados
+            con fotos personalizadas, fondos mágicos y realidad aumentada. ¡Haz que cada momento
+            sea inolvidable!
+            </p>
+            <button (click)="magicBooth()">Descubre MagicBooth</button>
+        </div>
+               
+    </section>
+  </div>

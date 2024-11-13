@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { IUser, IFeedbackStatus } from '../../../interfaces';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { IUser, IRole } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RoleService } from '../../../services/role.service';
 
 @Component({
   selector: 'app-user-form',
@@ -13,27 +14,35 @@ import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule } from '@angular/fo
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnInit {
+
   public fb: FormBuilder = inject(FormBuilder);
+
+  roleService = inject(RoleService);
+
   @Input() userForm!: FormGroup;
+  @Input() roles: IRole[]=[];
   @Output() callSaveMethod: EventEmitter<IUser> = new EventEmitter<IUser>();
   @Output() callUpdateMethod: EventEmitter<IUser> = new EventEmitter<IUser>();
 
+  ngOnInit() {
+  }
+
   callSave() {
-    let order: IUser = {
+    let user: IUser = {
       email: this.userForm.controls['email'].value,
       name: this.userForm.controls['name'].value,
       lastname: this.userForm.controls['lastname'].value,
       password: this.userForm.controls['password'].value,
-      updatedAt: this.userForm.controls['updatedAt'].value,
+      role: this.userForm.controls['role'].value
     }
     if(this.userForm.controls['id'].value) {
-      order.id = this.userForm.controls['id'].value;
+      user.id = this.userForm.controls['id'].value;
     } 
-    if(order.id) {
-      this.callUpdateMethod.emit(order);
+    if(user.id) {
+      this.callUpdateMethod.emit(user);
     } else {
-      this.callSaveMethod.emit(order);
+      this.callSaveMethod.emit(user);
     }
   }
 }
