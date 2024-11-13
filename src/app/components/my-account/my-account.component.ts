@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
+import { AuthGoogleService } from "../../services/auth-google.service";
 
 @Component({
   selector: "app-my-account",
@@ -13,6 +14,7 @@ import { AuthService } from "../../services/auth.service";
 export class MyAccountComponent implements OnInit {
   public userName: string = '';
   private service = inject(AuthService);
+  public authGoogleService = inject(AuthGoogleService)
 
   constructor(public router: Router) {
     let user = localStorage.getItem('auth_user');
@@ -24,6 +26,7 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
+    this.authGoogleService.logout();
     this.service.logout();
     this.router.navigateByUrl('/login');
   }

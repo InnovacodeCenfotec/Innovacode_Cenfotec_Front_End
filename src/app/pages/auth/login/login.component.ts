@@ -4,6 +4,8 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AuthGoogleService } from '../../../services/auth-google.service';
+import { AuthFacebookService } from '../../../services/auth-facebook.service';
+import { AuthGithubService } from '../../../services/auth-github.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,8 @@ import { AuthGoogleService } from '../../../services/auth-google.service';
 })
 export class LoginComponent{
   private authGoogleService = inject(AuthGoogleService);
+  // private authFacebookService = inject(AuthFacebookService);
+  // private authGithubService = inject(AuthGithubService);
   public loginError!: string;
   loginStatus: boolean = false;
   @ViewChild('email') emailModel!: NgModel;
@@ -28,22 +32,9 @@ export class LoginComponent{
     private router: Router,
     private authService: AuthService,
   ) {
+    
   }
-
-  ngOnInit(): void {
-    this.authGoogleService.tokenReceived$.subscribe({
-      next: (idToken) => {
-        this.authService.loginWithGoogle(idToken).subscribe({
-          next: () => this.router.navigateByUrl('/app/dashboard'),
-          error: (err: any) => {
-            this.loginStatus = true;
-            this.loginError = 'Error al iniciar sesión con Google';
-          }
-        });
-      }
-    });
-  }
-
+    
   public handleLogin(event: Event) {
     event.preventDefault();
     if (!this.emailModel?.valid) {
@@ -68,4 +59,11 @@ export class LoginComponent{
     this.authGoogleService.login();
   }
 
+  // public loginFacebook() {
+  //   this.authFacebookService.login();
+  // }
+
+  // public LoginGithub() {
+  //   this.authGithubService.login();
+  // }
 }

@@ -80,10 +80,11 @@
   .magicbooth-title {
     font-size: 3rem;
     font-weight: bold;
-    font: normal !important;
-    background: linear-gradient(#6595F5, #7B69F1);
+    background: linear-gradient(to right, #4a90e2, #a64ca6);
     -webkit-background-clip: text;
     color: transparent;
+    margin: 0;
+
   }
 
   .btn-purple {
