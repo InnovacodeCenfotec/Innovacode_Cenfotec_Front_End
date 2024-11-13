@@ -9,6 +9,19 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a routerLink="/app/camara">Cámara</a></li>
         <li><a routerLink="/app/contact">Contactanos</a></li>
+        @for (route of permittedRoutes; track $index) {
+          @if (route.data && route.data['showInSidebar']) {
+          <li class="sidebar-list">
+            <a
+              routerLink="{{route.path}}"
+              routerLinkActive="active"
+              class="sidebar-link sidebar-title"
+            >
+                <span>{{route.data['name']}}</span>
+              </a>
+            </li>
+          }
+        }
       </ul>
     </nav>
     <div class="nav-right">
