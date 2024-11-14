@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IAuthority, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
-import { Observable, firstValueFrom, of, tap } from 'rxjs';
+import { Observable, firstValueFrom, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -123,5 +123,8 @@ export class AuthService {
       isAdmin = userAuthorities?.some(item => item.authority == IRoleType.superAdmin);
     }          
     return allowedUser && isAdmin;
+  }
+  loginWithGoogle(idToken: string | null): Observable<any> {
+    return this.http.post("http://localhost:8080/auth/google-login", { idToken });
   }
 }
