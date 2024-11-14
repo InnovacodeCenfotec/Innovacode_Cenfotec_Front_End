@@ -67,6 +67,7 @@ export class UsersComponent implements OnInit {
     console.log('user', user)
     this.userService.save(user);
     this.modalService.closeAll();
+    window.location.reload();
   }
 
   callEdition(user: IUser) {
