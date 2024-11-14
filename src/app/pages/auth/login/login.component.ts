@@ -12,7 +12,7 @@ import { AuthGithubService } from '../../../services/auth-github.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent{
   private authGoogleService = inject(AuthGoogleService);
