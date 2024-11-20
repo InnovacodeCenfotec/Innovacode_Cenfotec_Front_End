@@ -20,15 +20,7 @@ export class IframeComponent implements OnInit {
   }
 
   loadIframeWithJwt() {
-    this.jwtService.getJwt().subscribe(
-        (response) => {
-          const jwt = response.token;
-          this.updateIframeSrc(jwt);
-        },
-        (error) => {
-          console.error('Error fetching JWT:', error);
-        }
-      );
+    const jwt = this.jwtService.getJwt();
   }
 
   updateIframeSrc(jwt: string) {
