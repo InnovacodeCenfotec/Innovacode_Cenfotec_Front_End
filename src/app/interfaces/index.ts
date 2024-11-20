@@ -74,3 +74,7 @@ export interface IContact {
   subject?: string;
   message?: string;
 }
+
+export interface Ijwt{
+  jwt?:string;
+}
