@@ -14,6 +14,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CameraComponent } from './components/camera/camera.component';
+import { GaleryComponent } from './pages/galery/galery.component';
 
 export const routes: Routes = [
   {
@@ -115,6 +116,18 @@ export const routes: Routes = [
           showInSidebar: true
         }
       },
+      {
+        path: 'galery',
+        component: GaleryComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Galeria',
+          showInSidebar: true
+        }
+      }
     ],
   },
 ];

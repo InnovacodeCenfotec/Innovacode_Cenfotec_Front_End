@@ -18,7 +18,8 @@ export interface IUser {
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
-  role?: IRole
+  role?: IRole;
+  imageList?: IImage[];
 }
 
 export interface IAuthority {
@@ -83,4 +84,11 @@ export interface IContact {
   email?: string;
   subject?: string;
   message?: string;
+}
+
+export interface IImage {
+  id?: number;
+  name?: string;
+  url?: string;
+  user?: IUser;
 }
