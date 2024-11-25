@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ModalComponent } from "../modal/modal.component";
 import { ModalService } from '../../services/modal.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-image',
   standalone: true,
   templateUrl: './image.component.html',
   styleUrl: './image.component.scss',
-  imports: [ModalComponent]
+  imports: [ModalComponent, CommonModule]
 })
 export class ImageComponent implements OnInit{
   @Input() image: IImage | null = null; 
@@ -20,6 +21,7 @@ export class ImageComponent implements OnInit{
   formattedDate: string = '';
   public modalService: ModalService = inject(ModalService);
   @ViewChild('showImageModal') public showImageModal: any;
+  imageDelete: boolean = false;
 
   constructor(private imageService: ImageService, public router: Router, private http: HttpClient) {
     const user = localStorage.getItem('auth_user');
@@ -54,18 +56,34 @@ export class ImageComponent implements OnInit{
 
   public downloadImage(): void {
     if (this.image?.url) {
-      const link = document.createElement('a');
-      link.href = this.image.url; 
-      link.setAttribute('download', this.image.name || 'downloaded-image.png');
-      document.body.appendChild(link); // Necesario para Firefox
-      link.click();
-      document.body.removeChild(link);
+      // Realiza una solicitud HTTP para obtener la imagen como blob
+      this.http.get(this.image.url, { responseType: 'blob' }).subscribe({
+        next: (blob) => {
+          // Crea un enlace temporal para descargar el blob
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', this.image?.name || 'downloaded-image.png');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url); // Limpia el objeto URL
+        },
+        error: (error) => {
+          console.error('Error downloading the image:', error);
+        }
+      });
     }
   }
+  
   
   deleteImage() {
     if (!this.image || !this.image.id) return;
     this.imageService.deleteImage(this.image.id);
-    window.location.reload();
+    this.modalService.closeAll();
+    this.imageDelete = true;
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }
 }

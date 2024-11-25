@@ -1989,6 +1989,7 @@ html[dir="rtl"] {
   // modal page
   .modal-dialog {
     .modal-content {
+      background-color: #1f2937 !important;
       .modal-body {
         p {
           a {
@@ -1998,9 +1999,6 @@ html[dir="rtl"] {
       }
     }
   }
-.modal-content{
-  --mdb-modal-bg: #1F2937 !important;
-}
 
   // forms page
   .drag-box {
