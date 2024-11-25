@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IContact } from '../../../interfaces';
-import { AuthService } from '../../../services/auth.service'; // Importa el servicio de autenticación
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -20,20 +20,19 @@ export class ContactFormComponent implements OnInit {
   @Input() contactForm!: FormGroup;
   @Output() callSendMethod: EventEmitter<IContact> = new EventEmitter<IContact>();
 
-  // Inyecta el servicio de autenticación
   private authService = inject(AuthService);
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const user = this.authService.getUser();
-
-    // Verifica si el usuario existe antes de inicializar el formulario
+    
     this.contactForm = this.fb.group({
-      name: [user?.name || ''],    // Acceso seguro con `?.`
-      email: [user?.email || ''],  // Acceso seguro con `?.`
-      subject: [''],                // Campo vacío por defecto
-      message: ['']                 // Campo vacío por defecto
+      name: [user?.name || ''],
+      lastName: [user?.lastname || ''],
+      email: [user?.email || ''],
+      subject: [''],
+      message: ['']
     });
   }
 
