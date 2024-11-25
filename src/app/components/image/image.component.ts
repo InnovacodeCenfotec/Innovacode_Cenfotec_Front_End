@@ -56,10 +56,8 @@ export class ImageComponent implements OnInit{
 
   public downloadImage(): void {
     if (this.image?.url) {
-      // Realiza una solicitud HTTP para obtener la imagen como blob
       this.http.get(this.image.url, { responseType: 'blob' }).subscribe({
         next: (blob) => {
-          // Crea un enlace temporal para descargar el blob
           const url = window.URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
@@ -67,7 +65,7 @@ export class ImageComponent implements OnInit{
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          window.URL.revokeObjectURL(url); // Limpia el objeto URL
+          window.URL.revokeObjectURL(url);
         },
         error: (error) => {
           console.error('Error downloading the image:', error);
