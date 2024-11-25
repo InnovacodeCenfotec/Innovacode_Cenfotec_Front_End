@@ -66,6 +66,7 @@ export class ImageComponent implements OnInit{
           link.click();
           document.body.removeChild(link);
           window.URL.revokeObjectURL(url);
+          this.modalService.closeAll();
         },
         error: (error) => {
           console.error('Error downloading the image:', error);
