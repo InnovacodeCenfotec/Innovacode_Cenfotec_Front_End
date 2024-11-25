@@ -1,4 +1,4 @@
-.propiedades-grid-container {
+.images-grid-container {
     padding: 0 10px;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     grid-template-columns: repeat(auto-fit);
 }
   
-.propiedades-grid-row {
+.images-grid-row {
     justify-content: space-around;
     display: flex;
     gap: 20px;
@@ -14,7 +14,7 @@
     padding-bottom: 90px;
 }
 
-.propiedad-card-container {
+.image-card-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

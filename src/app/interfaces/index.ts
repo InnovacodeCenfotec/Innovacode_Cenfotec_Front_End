@@ -90,5 +90,6 @@ export interface IImage {
   id?: number;
   name?: string;
   url?: string;
+  createDate?: Date;
   user?: IUser;
 }

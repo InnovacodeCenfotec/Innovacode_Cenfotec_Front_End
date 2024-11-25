@@ -1,22 +1,22 @@
 .login-card {
   position: relative;
   overflow: hidden;
-  width: 100%; /* Ancho fijo */
+  width: 500px;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #1f2937;
   margin: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efecto de elevación y sombra en hover */
+
 .login-card:hover {
-  transform: translateY(-5px); /* Eleva ligeramente la carta */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Oscurecimiento de la carta completa */
+
 .login-card::after {
   content: '';
   position: absolute;
@@ -24,52 +24,48 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* Capa de oscurecimiento */
-  opacity: 0; /* Oculto inicialmente */
-  transition: opacity 0.3s ease; /* Transición suave */
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .login-card:hover::after {
-  opacity: 1; /* Se hace visible al pasar el cursor */
+  opacity: 1;
 }
 
-/* Imagen dentro de la carta */
+
 .logo-innova {
   width: 100%;
-  height: 400px; /* Altura fija */
+  height: 400px;
   object-fit: cover;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  transition: filter 0.3s ease; /* Transición suave para la imagen */
+  transition: filter 0.3s ease;
 }
 
-/* Oscurecimiento de la imagen en hover */
 .login-card:hover .logo-innova {
-  filter: brightness(70%); /* Reduce el brillo para oscurecer la imagen */
+  filter: brightness(70%);
 }
 
-/* Contenedor principal para centrar las cartas */
 .login-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-/* Texto del tamaño de la imagen */
 .image-size {
   margin-top: 10px;
   font-size: 0.9rem;
 }
 
-/* Media queries para hacer las cartas responsivas */
 @media screen and (max-width: 800px) {
   .login-card {
-    width: 80%; /* Más ancho en pantallas pequeñas */
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 500px) {
   .login-card {
-    width: 90%; /* Ocupar casi todo el ancho */
+    width: 90%;
   }
 }
