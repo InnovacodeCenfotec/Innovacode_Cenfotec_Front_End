@@ -1998,6 +1998,10 @@ html[dir="rtl"] {
       }
     }
   }
+.modal-content{
+  --mdb-modal-bg: #1F2937 !important;
+}
+
   // forms page
   .drag-box {
     fieldset {
