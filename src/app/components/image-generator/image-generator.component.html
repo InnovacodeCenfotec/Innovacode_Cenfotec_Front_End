@@ -1,0 +1,15 @@
+<div class="images-grid-container">
+    <div *ngIf="rows && rows.length > 0; else noImagenesTemplate">
+      <div class="images-grid-row" *ngFor="let row of rows">
+        <div class="image-card-container" *ngFor="let image of row">
+          <app-image [image]="image"></app-image>
+        </div>
+      </div>
+    </div>
+    <ng-template #noImagenesTemplate>
+      <div class="texto-error justify-content-center d-flex">
+        No se encuentran imágenes
+      </div>
+    </ng-template>
+  </div>
+  

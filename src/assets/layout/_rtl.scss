@@ -1989,6 +1989,7 @@ html[dir="rtl"] {
   // modal page
   .modal-dialog {
     .modal-content {
+      background-color: #1f2937 !important;
       .modal-body {
         p {
           a {
@@ -1998,6 +1999,7 @@ html[dir="rtl"] {
       }
     }
   }
+
   // forms page
   .drag-box {
     fieldset {

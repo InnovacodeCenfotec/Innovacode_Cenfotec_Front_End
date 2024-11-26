@@ -18,7 +18,8 @@ export interface IUser {
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
-  role?: IRole
+  role?: IRole;
+  imageList?: IImage[];
 }
 
 export interface IAuthority {
@@ -68,6 +69,16 @@ export interface ISearch {
   totalPages?:number;
 }
 
+export interface IResetPasswordToken {
+  id?: number;
+  token?: string;
+  user?: IUser;
+  expiryDate?: Date;
+}
+
+export interface IResetPasswordRequest {
+  newPassword?: string;
+}
 export interface IContact {
   name?: string; 
   email?: string;
@@ -76,5 +87,12 @@ export interface IContact {
 }
 
 export interface Ijwt{
-  jwt?:string;
+  jwt?:string;}
+  
+export interface IImage {
+  id?: number;
+  name?: string;
+  url?: string;
+  createDate?: Date;
+  user?: IUser;
 }
