@@ -9,14 +9,16 @@
     <div class="col-12">
       <app-user-list
         (callModalAction)="callEdition($event)"
-        (callDeleteAction)="userService.delete($event)"
+        (callDeleteAction)="confirmDelete($event)"
         [users]="userService.users$()"
       />
+    <!--(callDeleteAction)="userService.delete($event)""-->
     </div>
   </div>
 } @loading (minimum 1.5s){
   <app-loader></app-loader>
 }
+
 
 <ng-template #addUsersModal class="cover">
   <app-modal
@@ -27,8 +29,8 @@
         [userForm]="userForm"
         (callSaveMethod)="saveUser($event)"
         (callUpdateMethod)="updateUser($event)"
-        [roles]="roleService.roles$()"
       />
+      <!-- [roles]="roleService.roles$()"-->
     </div>
   </app-modal>
 </ng-template>
