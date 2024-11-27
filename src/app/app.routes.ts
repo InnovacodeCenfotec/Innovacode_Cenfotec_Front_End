@@ -14,6 +14,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CameraComponent } from './components/camera/camera.component';
+import { InstagramDashboardComponent } from './pages/instagram-dashboard/instagram-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -63,7 +64,7 @@ export const routes: Routes = [
           authorities: [
             IRoleType.superAdmin
           ],
-          name: 'Usarios',
+          name: 'Usuarios',
           showInSidebar: true
         }
       },
@@ -112,6 +113,18 @@ export const routes: Routes = [
             IRoleType.user,
           ],
           name: 'Camara',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'instagram-dashboard',
+        component: InstagramDashboardComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Explorador',
           showInSidebar: true
         }
       },
