@@ -127,4 +127,20 @@ export class AuthService {
   loginWithGoogle(idToken: string | null): Observable<any> {
     return this.http.post("http://localhost:8080/auth/google-login", { idToken });
   }
+
+  
+  uploadImage(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+     formData.append('file', file);
+     const authUser = localStorage.getItem('auth_user'); 
+     if (authUser) { 
+       const user = JSON.parse(authUser); 
+       const userId = user.id;
+        formData.append('userId', userId);
+        } else { 
+         console.error('User not found in localStorage');
+        }
+   
+   return this.http.post<ILoginResponse>("auth/saveImage", formData);
+  }
 }
