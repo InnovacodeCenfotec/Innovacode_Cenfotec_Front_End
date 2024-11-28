@@ -141,6 +141,6 @@ export class AuthService {
          console.error('User not found in localStorage');
         }
    
-   return this.http.post<ILoginResponse>("auth/saveImage", formData);
+   return this.http.post("auth/saveImage", formData);
   }
 }

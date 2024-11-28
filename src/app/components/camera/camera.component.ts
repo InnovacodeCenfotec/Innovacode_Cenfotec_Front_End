@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil, WebcamModule } from 'ngx-webcam';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { ImageService } from '../../services/image.service';
 
 @Component({
   selector: 'app-camera',
@@ -28,7 +29,7 @@ export class CameraComponent {
 
   private trigger: Subject<void> = new Subject<void>();
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService,  private imageService: ImageService ) {}
 
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {
@@ -105,7 +106,7 @@ export class CameraComponent {
       const latestImage = this.webcamImages[this.webcamImages.length - 1];
        const imageBlob = this.dataURLtoBlob(latestImage.imageAsDataUrl); 
        const imageFile = new File([imageBlob], 'webcam-image.png', { type: imageBlob.type });
-        this.authService.uploadImage(imageFile).subscribe( 
+        this.imageService.uploadImage(imageFile).subscribe( 
           (response) => { console.log('Image uploaded successfully', response);
           },
           (error) => { console.error('Error uploading image', error); 
