@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { IAuthority, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
+import { IAuthority, IImage, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
 import { Observable, firstValueFrom, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -143,4 +143,10 @@ export class AuthService {
    
    return this.http.post("auth/saveImage", formData);
   }
+ 
+  getImageToken(imageId: number): Observable<string> { 
+    const url = `"http://localhost:8080/auth/imagetoken"/${imageId}`;
+     return this.http.get<string>(url); 
+    }
+  
 }

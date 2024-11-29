@@ -106,7 +106,7 @@ export class CameraComponent {
       const latestImage = this.webcamImages[this.webcamImages.length - 1];
        const imageBlob = this.dataURLtoBlob(latestImage.imageAsDataUrl); 
        const imageFile = new File([imageBlob], 'webcam-image.png', { type: imageBlob.type });
-        this.imageService.uploadImage(imageFile).subscribe( 
+        this.authService.uploadImage(imageFile).subscribe( 
           (response) => { console.log('Image uploaded successfully', response);
           },
           (error) => { console.error('Error uploading image', error); 
