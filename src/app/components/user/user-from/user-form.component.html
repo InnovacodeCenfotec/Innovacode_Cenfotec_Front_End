@@ -27,7 +27,7 @@
     }
   </div>
   <div class="mb-2">
-    <label class="mb-1" for="name">Contraseña*</label>
+    <label class="mb-1" for="name">Contraseña</label>
     <input  id="password" formControlName="password" type="password" class="form-control">
     @if (userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)) {
       <p class="text-danger my-1">Contraseña es requerida</p>
@@ -48,7 +48,7 @@
       <label class="form-check-label" for="enabled">Enabled</label>
     </div>
     <div class="form-check form-check-inline">
-      <input formControlName="enabled"  mdbRadio class="form-check-input" type="radio" id="enabled-false" [value]="false"
+      <input formControlName="enabled"   class="form-check-input" type="radio" id="enabled-false" [value]="false"
       />
       <label class="form-check-label" for="enabled">Disabled</label>
     </div>

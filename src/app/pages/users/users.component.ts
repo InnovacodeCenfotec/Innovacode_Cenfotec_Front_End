@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     name: ['', Validators.required],
     lastname: ['', Validators.required],
-    password: ['', Validators.required],
+    password: [''],
     //role: ['', Validators.required],
     enabled: ['', Validators.required]
   })
@@ -78,7 +78,7 @@ export class UsersComponent implements OnInit {
     this.userForm.controls['email'].setValue(user.email ? user.email : '');
     this.userForm.controls['name'].setValue(user.name ? user.name : '');
     this.userForm.controls['lastname'].setValue(user.lastname ? user.lastname : '');
-    this.userForm.controls['password'].setValue(user.password ? JSON.stringify(user.password) : '');
+    // this.userForm.controls['password'].setValue(user.password ? user.password : '');
     //this.userForm.controls['role'].setValue(user.role ? JSON.stringify(user.role) : '');
     this.userForm.controls['enabled'].setValue(user.enabled ? JSON.stringify(user.enabled) : '');
     this.modalService.displayModal('md', this.addUsersModal);
