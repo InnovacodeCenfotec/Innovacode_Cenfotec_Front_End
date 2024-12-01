@@ -1,12 +1,12 @@
 .token {
     min-height: 100vh;
-    background-color: #1a1a1a;
+    background: linear-gradient(to bottom, #000000, #111828);
     color: white;
     font-family: Arial, sans-serif;
     .hero {
         text-align: center;
         padding: 5rem 2rem;
-        background: linear-gradient(to bottom, #000000, #111828); // Degradado oscuro para el fondo
+        background-color: #1a1a1a;
         color: white;
         font-family: 'Arial', sans-serif;
       h2 {
