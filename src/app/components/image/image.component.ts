@@ -75,6 +75,16 @@ export class ImageComponent implements OnInit{
     }
   }
   
+  editImage(){
+     if(this.image && this.image.id != null){
+       localStorage.setItem('image_ID', this.image.id.toString()); 
+       setTimeout(() => {
+        window.location.href = '/app/api';
+        }, 2000);
+      } else { 
+        console.error('La imagen o su ID es nula'); 
+      }
+  }
   
   deleteImage() {
     if (!this.image || !this.image.id) return;

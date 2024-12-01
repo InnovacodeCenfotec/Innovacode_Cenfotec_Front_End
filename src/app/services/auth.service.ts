@@ -144,9 +144,12 @@ export class AuthService {
    return this.http.post("auth/saveImage", formData);
   }
  
-  getImageToken(imageId: number): Observable<string> { 
-    const url = `"http://localhost:8080/auth/imagetoken"/${imageId}`;
-     return this.http.get<string>(url); 
-    }
+  getImageToken(imageId: number): Promise<string> { 
+    return this.http.get(`auth/imagetoken/${imageId}`, { responseType: 'text' }).toPromise().then(response => { 
+      if (response) { return response; } else { throw new Error('No se recibió un token válido'); 
+
+      } 
+    });
+   }
   
 }
