@@ -12,6 +12,8 @@ export interface IUser {
   name?: string;
   lastname?: string;
   email?: string;
+  phoneNumber?: string;
+  address?: string;
   password?: string;
   confirmPassword?: string;
   active?: boolean;
@@ -19,6 +21,7 @@ export interface IUser {
   updatedAt?: string;
   authorities?: IAuthority[];
   role?: IRole
+  biography?:string;
 }
 
 export interface IAuthority {
