@@ -1,0 +1,50 @@
+<div class="login-container" (click)="modalService.displayModal('md', showImageModal)">    
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="login-card">
+        <div class="w-100">
+          <div class="text-center container-img">
+            <img
+              class="logo-innova"
+              [src]="image?.url || 'assets/img/noImageFound.png'"alt="Imagen"
+              alt="Primera imagen"
+            />
+          </div>
+          <div class="image-size">
+            <p>Nombre: {{image?.name}}
+            <p>Fecha de creacion: {{ formattedDate }}</p>
+            <p>Tamaño: {{ imageSize }}</p>
+            <p *ngIf="imageDelete == true" class="text-danger">Imagen eliminada</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #showImageModal class="cover">
+    <app-modal
+      [hideFooter]="true"
+    >
+    <div class="container">
+      <h2>{{image?.name}}</h2>
+      <div class="container-buttons">
+        <button type="button" class="btn btn-purple" (click)="downloadImage()"><i class="fas fa-download"></i></button>
+        <button type="button" class="btn btn-purple" (click)="modalService.displayModal('md', deleteConfirm)"><i class="fas fa-trash"></i></button>
+        <button type="button" class="btn btn-purple" (click)="editImage()"><i class="fas fa-edit"></i></button>
+      </div>
+    </div>
+      <img
+                class="show-image"
+                [src]="image?.url || 'assets/img/noImageFound.png'"alt="Imagen"
+                alt="Primera imagen"
+              />
+              <h3 style="margin-top: 10px;">Fecha de creacion: {{ formattedDate }}</h3>
+              <h3>Tamaño: {{ imageSize }}</h3>
+    </app-modal>
+  </ng-template>
+  
+  <ng-template #deleteConfirm class="cover">
+    <app-modal [hideFooter]="true">
+      <h2>Seguro quieres eliminar la imagen?</h2>
+      <button type="button" class="btn btn-purple" (click)="deleteImage()">Eliminar</button>
+    </app-modal>
+  </ng-template>

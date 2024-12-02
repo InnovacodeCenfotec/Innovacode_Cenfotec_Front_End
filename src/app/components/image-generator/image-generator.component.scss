@@ -1,0 +1,29 @@
+.images-grid-container {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit);
+}
+  
+.images-grid-row {
+    justify-content: space-around;
+    display: flex;
+    gap: 20px;
+    padding-top: 30px;
+    padding-bottom: 90px;
+}
+
+.image-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.texto-error {
+    color: rgb(187, 187, 187);
+    font-size: 40px;
+    padding-top: 350px;
+    padding-bottom: 350px;
+}
