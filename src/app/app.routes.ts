@@ -118,6 +118,42 @@ export const routes: Routes = [
           showInSidebar: true
         }
       },
+      {
+        path: 'galery',
+        component: GaleryComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Galeria',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'api',
+        component: ApiComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Api',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'instagram-dashboard',
+        component: InstagramDashboardComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Explorador',
+          showInSidebar: true
+        }
+      },
     ],
   },
 ];
