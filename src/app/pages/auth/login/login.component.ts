@@ -6,6 +6,8 @@ import { AuthService } from '../../../services/auth.service';
 import { AuthGoogleService } from '../../../services/auth-google.service';
 import { AuthFacebookService } from '../../../services/auth-facebook.service';
 import { AuthGithubService } from '../../../services/auth-github.service';
+import { AlertService } from '../../../services/alert.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,8 @@ import { AuthGithubService } from '../../../services/auth-github.service';
 })
 export class LoginComponent{
   private authGoogleService = inject(AuthGoogleService);
+  private alertService: AlertService = inject(AlertService);
+
   // private authFacebookService = inject(AuthFacebookService);
   // private authGithubService = inject(AuthGithubService);
   public loginError!: string;
@@ -47,7 +51,7 @@ export class LoginComponent{
       this.authService.login(this.loginForm).subscribe({
         next: () => this.router.navigateByUrl('/app/dashboard'),
         error: (err: any) => {
-          console.log("error");
+          console.log("error",err);
           this.loginStatus = true;
           this.loginError = err.error.description;
         }

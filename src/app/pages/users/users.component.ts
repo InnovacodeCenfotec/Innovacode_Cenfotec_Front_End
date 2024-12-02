@@ -88,13 +88,8 @@ export class UsersComponent implements OnInit {
     this.userService.update(user);
     this.modalService.closeAll();
   }
-  /*confirmDelete(user: IUser): void {
-    const isConfirmed = window.confirm(`¿Está seguro que desea eliminar el usuario?: ${user.name} ${user.lastname}?`);
-    if (isConfirmed) {
-      this.userService.delete(user);
-    }
-  }*/
-    confirmDelete(user: IUser): void {
+
+  confirmDelete(user: IUser): void {
       Swal.fire({
         title: '¿Está seguro?',
         text: `¿Desea eliminar el usuario: ${user.name} ${user.lastname}?`,
