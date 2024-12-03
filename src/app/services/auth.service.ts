@@ -89,20 +89,7 @@ export class AuthService {
           );
         }),
         catchError((err: any) => {
-          console.error('Caught error:', err);
-          let errorMessage = 'Error de login.';
-          if (err.status === 401) {
-            errorMessage = 'Correo o contraseña inválida.';
-          } else if (err.status === 403) {
-            errorMessage = 'Cuenta deshabilitada.';
-          }
-          this.alertService.displayAlert(
-            'error',
-            errorMessage,
-            'center',
-            'top',
-            ['error-snackbar']
-          );
+          console.log('Error de login AUTH.SERVICE:', err);
           return throwError(() => err);
         })
       );

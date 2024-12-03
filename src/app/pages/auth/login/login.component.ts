@@ -52,8 +52,8 @@ export class LoginComponent{
         next: () => this.router.navigateByUrl('/app/dashboard'),
         error: (err: any) => {
           console.log("error",err);
-          this.loginStatus = true;
-          this.loginError = err.error.description;
+          this.loginStatus = false; //true antes
+          this.loginError = err.description;
         }
       });
     }
