@@ -1,9 +1,13 @@
 <div class="container">
   <header class="header">
+    <h1 class="title">Magicbooth Dashboard</h1>
+  </header>
+
+  <div class="search-settings">
     <div class="search-bar">
       <input
         type="text"
-        placeholder="Buscar"
+        placeholder="Search"
         class="search-input"
       />
       <span class="search-icon">🔍</span>
@@ -11,24 +15,32 @@
     <button class="settings-btn">
       <span class="settings-icon">⚙️</span>
     </button>
-  </header>
+  </div>
 
   <main class="grid">
-    <div
-      *ngFor="let image of images; let i = index"
-      [class.large]="i % 5 === 0"
-      class="grid-item"
-    >
-      <img [src]="image.src" [alt]="image.alt" class="grid-img" />
-      <div class="overlay">
-        <button
-          class="favorite-btn"
-          [class.active]="favorites.includes(i)"
-          (click)="toggleFavorite(i)"
-        >
-          ❤️
-        </button>
+    <!-- Ensure images are loaded -->
+    <div *ngIf="images$() as images; else loading">
+      <div
+        *ngFor="let image of images; let i = index"
+        [class.large]="i % 5 === 0"
+        class="grid-item"
+      >
+        <!-- Use 'url' instead of 'src' -->
+        <img [src]="image.url" [alt]="image.name || 'Image'" class="grid-img" />
+        <div class="overlay">
+          <button
+            class="favorite-btn"
+            [class.active]="favorites.includes(i)"
+            (click)="toggleFavorite(i)"
+          >
+            ❤️
+          </button>
+        </div>
       </div>
     </div>
+    <!-- Loading state -->
+    <ng-template #loading>
+      <p>Loading images...</p>
+    </ng-template>
   </main>
 </div>

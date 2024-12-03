@@ -14,6 +14,17 @@ export class ImageService extends BaseService<IImage>{
     return this.imageListSignal;
   }
 
+  getAllImages(): void {
+    this.http.get<IImage[]>(`${this.source}`).subscribe({
+      next: (response: IImage[]) => {
+        this.imageListSignal.set(response); 
+      },
+      error: (error: any) => {
+        console.error('Error fetching all images:', error);
+      }
+    });
+  }
+
   getAllImagesByUserId(userId: number): void {
     this.http.get<IImage[]>(`${this.source}/user/${userId}`).subscribe({
       next: (response: IImage[]) => {
