@@ -25,20 +25,12 @@ export class ImageService extends BaseService<IImage>{
     });
   }
 
-  uploadImage(file: File): Observable<any> {
-    const formData: FormData = new FormData();
-     formData.append('file', file);
-     const authUser = localStorage.getItem('auth_user'); 
-     if (authUser) { 
-       const user = JSON.parse(authUser); 
-       const userId = user.id;
-        formData.append('userId', userId);
-        } else { 
-         console.error('User not found in localStorage');
-        }
-   
-   return this.http.post(this.source, formData);
+
+
+  public uploadImage(formData: FormData): Observable<any> {
+    return this.http.post(this.source, formData);
   }
+  
 
   deleteImage(id: number): void {
     this.http.delete(`${this.source}${id}`).subscribe({
