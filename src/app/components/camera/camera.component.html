@@ -35,11 +35,11 @@
       <div class="col-4" *ngFor="let image of webcamImages; let i = index">
         <input type="text" [(ngModel)]="imageNames[i]" placeholder="Nombre de la imagen" class="form-control mb-2"/>
         <button (click)="downloadImage(image, imageNames[i])" class="btn btn-success">
-          <!-- SVG Icono de Descargar -->
+          <i class="fas fa-download"></i>
           Descargar
         </button>
         <button (click)="uploadImage(image, imageNames[i])" class="btn btn-warning">
-          <!-- SVG Icono de Subir -->
+          <i class="fas fa-upload"></i>
           Subir
         </button>
         <img [src]="image.imageAsDataUrl" class="img-fluid rounded mb-2" [alt]="'Imagen ' + (i + 1)"/>
