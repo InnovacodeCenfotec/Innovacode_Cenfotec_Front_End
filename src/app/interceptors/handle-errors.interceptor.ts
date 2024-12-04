@@ -28,9 +28,6 @@ export const handleErrorsInterceptor: HttpInterceptorFn = (req, next) => {
           'top',
           ['error-snackbar']
         );
-        authService.logout();
-        window.location.assign('/token-expired');
-        return of({ status: false });
       }
       if (error.status === 403 && error.error?.description === 'The JWT token has expired') {
         authService.logout();
