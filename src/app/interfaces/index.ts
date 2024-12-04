@@ -16,6 +16,7 @@ export interface IUser {
   address?: string;
   password?: string;
   confirmPassword?: string;
+  photoUrl?: string;
   active?: boolean;
   createdAt?: string;
   updatedAt?: string;

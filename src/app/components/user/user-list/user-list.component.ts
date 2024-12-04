@@ -6,6 +6,8 @@ import { ModalComponent } from '../../modal/modal.component';
 import { UserFormComponent } from '../user-from/user-form.component';
 import { RoleService } from '../../../services/role.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,6 +33,16 @@ export class UserListComponent implements OnChanges {
   public userService = inject(UserService);
   public roleService = inject(RoleService);
   public modalService = inject(NgbModal);
+  userName: String =  "";
+  userId: any;
+
+  constructor(public authService: AuthService, public router: Router) {
+    let user = localStorage.getItem('auth_user');
+      if(user) {
+        this.userName = JSON.parse(user)?.role.name;
+        console.log(this.userName)
+      } 
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['areActionsAvailable']) {

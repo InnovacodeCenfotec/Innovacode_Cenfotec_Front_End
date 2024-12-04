@@ -4,7 +4,7 @@
   </div>
   <div class="mb-2">
     <label class="mb-1" for="email">Correo Electronico*</label>
-    <input id="email" formControlName="email" type="email" class="form-control">
+    <input id="email" formControlName="email" type="email" class="form-control" readonly>
     @if (userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)) {
       <p class="text-danger my-1">Email is required</p>
     }

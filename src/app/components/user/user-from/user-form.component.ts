@@ -26,6 +26,8 @@ export class UserFormComponent implements OnInit {
   @Output() callUpdateMethod: EventEmitter<IUser> = new EventEmitter<IUser>();
 
   ngOnInit() {
+    // Deshabilitar el campo de correo electrónico 
+    this.userForm.controls['email'].disable(); 
   }
 
   callSave() {
