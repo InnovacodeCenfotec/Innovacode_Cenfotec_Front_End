@@ -77,10 +77,14 @@ export interface IContact {
   message?: string;
 }
 
+export interface Ijwt{
+  jwt?:string;}
+  
 export interface IImage {
   id?: number;
   name?: string;
   url?: string;
+  saveurl?:string;
   createDate?: Date;
   user?: IUser;
 }
