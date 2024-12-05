@@ -40,7 +40,6 @@ export class UserListComponent implements OnChanges {
     let user = localStorage.getItem('auth_user');
       if(user) {
         this.userName = JSON.parse(user)?.role.name;
-        console.log(this.userName)
       } 
   }
 

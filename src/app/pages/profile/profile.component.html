@@ -3,7 +3,7 @@
     <div class="profile-card-content">
       <div class="avatar-section">
         <!-- Vista previa de la imagen -->
-        <img [src]="url" alt="Foto de perfil" class="avatar" />
+        <img [src]="avatarUrl" alt="Foto de perfil" class="avatar" />
         <button class="btn btn-outline btn-sm" (click)="triggerFileInput()">Cambiar foto</button>
         <!-- Input oculto para subir la imagen -->
         <input 
@@ -11,7 +11,7 @@
           accept="image/*" 
           #fileInput 
           style="display: none;" 
-          (change)="upload($event)" 
+          (change)="onFileSelected($event)" 
         />
       </div>
       <div class="form-grid">
