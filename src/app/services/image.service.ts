@@ -33,7 +33,7 @@ export class ImageService extends BaseService<IImage>{
   
 
   deleteImage(id: number): void {
-    this.http.delete(`${this.source}${id}`).subscribe({
+    this.http.delete(`${this.source}/${id}`).subscribe({
       next: () => {
         const updatedImages = this.imageListSignal().filter(image => image.id !== id);
         this.imageListSignal.set(updatedImages);
