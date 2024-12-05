@@ -4,10 +4,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AuthGoogleService } from '../../../services/auth-google.service';
-import { AuthFacebookService } from '../../../services/auth-facebook.service';
-import { AuthGithubService } from '../../../services/auth-github.service';
 import { AlertService } from '../../../services/alert.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent{
   private authGoogleService = inject(AuthGoogleService);
-  private alertService: AlertService = inject(AlertService);
 
-  // private authFacebookService = inject(AuthFacebookService);
-  // private authGithubService = inject(AuthGithubService);
   public loginError!: string;
   loginStatus: boolean = false;
   @ViewChild('email') emailModel!: NgModel;
@@ -62,12 +56,4 @@ export class LoginComponent{
   public loginGoogle() {
     this.authGoogleService.login();
   }
-
-  // public loginFacebook() {
-  //   this.authFacebookService.login();
-  // }
-
-  // public LoginGithub() {
-  //   this.authGithubService.login();
-  // }
 }

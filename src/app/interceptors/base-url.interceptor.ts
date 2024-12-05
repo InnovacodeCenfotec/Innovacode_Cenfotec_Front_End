@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 export const baseUrlInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.url.startsWith('/assets/') || req.url.includes('accounts.google.com') || req.url.includes('www.googleapis.com') || req.url.includes('github.com') || req.url.includes('.well-known') || req.url.includes("https://res.cloudinary.com")) {
+  if (req.url.startsWith('/assets/') || req.url.includes('accounts.google.com') || req.url.includes('www.googleapis.com') || req.url.includes('github.com') || req.url.includes('.well-known') || req.url.includes("https://res.cloudinary.com") || req.url.includes("https://oauth2.googleapis.com")) {
     return next(req);
   }
 
