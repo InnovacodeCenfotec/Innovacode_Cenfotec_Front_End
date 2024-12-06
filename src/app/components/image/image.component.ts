@@ -6,13 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { ModalComponent } from "../modal/modal.component";
 import { ModalService } from '../../services/modal.service';
 import { CommonModule } from '@angular/common';
+import { ShareButtonDirective } from 'ngx-sharebuttons';
 
 @Component({
   selector: 'app-image',
   standalone: true,
   templateUrl: './image.component.html',
   styleUrl: './image.component.scss',
-  imports: [ModalComponent, CommonModule]
+  imports: [ModalComponent, CommonModule, ShareButtonDirective]
 })
 export class ImageComponent implements OnInit{
   @Input() image: IImage | null = null; 

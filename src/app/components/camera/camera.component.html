@@ -24,17 +24,7 @@
           Tomar Foto
         </button>
 
-        <button (click)="downloadImage()" class="btn btn-success">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill" viewBox="0 0 16 16">
-            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0"></path>
-          </svg>
-          Descargar
-        </button>
-        <button (click)="uploadImage()" class="btn btn-warning">
-           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cloud-upload-fill" viewBox="0 0 16 16"> 
-            <path d="M8 0a5.53 5.53 0 0 0-3.983 1.71A5.475 5.475 0 0 0 1 5.5c0 1.471.597 2.799 1.568 3.766C1.671 10.567 1 11.66 1 13c0 1.983 1.6 3.584 3.584 3.584h7.836A3.584 3.584 0 0 0 16 13c0-1.554-1.021-2.85-2.474-3.28.274-.348.474-.753.474-1.22 0-1.104-.896-2-2-2h-1V2.51a.5.5 0 0 0-.721-.447L8 3.5l-1.279-.936a.5.5 0 0 0-.721.447V6H5a2 2 0 0 0-2 2c0 .816.477 1.51 1.163 1.8A5.478 5.478 0 0 0 8 15a5.48 5.48 0 0 0 5-3h1.584c1.375 0 2.5-1.125 2.5-2.5a2.501 2.501 0 0 0-2.5-2.5H13c-.446 0-.867.148-1.217.391A5.504 5.504 0 0 0 8 0Z"/> </svg> 
-            Subir 
-          </button>
+        
       </div>
     </div>
   </section>
@@ -43,8 +33,18 @@
     <h2 class="gallery-title text-center">Galería de Imágenes Capturadas</h2>
     <div class="row mt-4">
       <div class="col-4" *ngFor="let image of webcamImages; let i = index">
+        <input type="text" [(ngModel)]="imageNames[i]" placeholder="Nombre de la imagen" class="form-control mb-2"/>
+        <button (click)="downloadImage(image, imageNames[i])" class="btn btn-success">
+          <i class="fas fa-download"></i>
+          Descargar
+        </button>
+        <button (click)="uploadImage(image, imageNames[i])" class="btn btn-warning">
+          <i class="fas fa-upload"></i>
+          Subir
+        </button>
         <img [src]="image.imageAsDataUrl" class="img-fluid rounded mb-2" [alt]="'Imagen ' + (i + 1)"/>
       </div>
+      
     </div>
   </section>
 
