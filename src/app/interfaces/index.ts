@@ -21,7 +21,9 @@ export interface IUser {
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
-  role?: IRole
+  role?: IRole;
+  imageList?: IImage[];
+  enabled?: boolean;
   biography?:string;
 }
 
@@ -53,16 +55,6 @@ export interface IRole {
   updatedAt: string;
 }
 
-export interface IGame {
-  id?: number;
-  name?: string;
-  imgURL?: string;
-  status?: string;
-  description?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
 export interface ISearch {
   page?: number;
   size?: number;
@@ -87,4 +79,16 @@ export interface IContact {
   email?: string;
   subject?: string;
   message?: string;
+}
+
+export interface Ijwt{
+  jwt?:string;}
+  
+export interface IImage {
+  id?: number;
+  name?: string;
+  url?: string;
+  saveurl?:string;
+  createDate?: Date;
+  user?: IUser;
 }
