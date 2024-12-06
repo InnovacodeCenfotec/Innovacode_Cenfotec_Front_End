@@ -26,21 +26,17 @@
 }
 
 /* Grid */
-.grid {
-  display: grid;
-  gap: 15rem; /* Mayor separación entre las imágenes */
-  padding: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Tamaño más grande para las imágenes */
-  grid-auto-rows: 600px; /* Define una altura mínima para las filas */
-  grid-auto-flow: dense; /* Hace que los elementos se acomoden sin superponerse */
-}
+
 
 .grid-item {
-  position: relative;
+  float: left;
   overflow: hidden;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
+  width: 30%;
+  margin: 1%;
+  
 
   &:hover {
     transform: scale(1.15);
