@@ -73,50 +73,16 @@ export class UsersComponent implements OnInit {
   callEdition(user: IUser) {
     this.userForm.controls['id'].setValue(user.id ? JSON.stringify(user.id) : '');
     this.userForm.controls['email'].setValue(user.email ? user.email : '');
-    this.userForm.controls['email'].disable();
     this.userForm.controls['name'].setValue(user.name ? user.name : '');
     this.userForm.controls['lastname'].setValue(user.lastname ? user.lastname : '');
     this.userForm.controls['password'].setValue(user.password ? JSON.stringify(user.password) : '');
     this.userForm.controls['role'].setValue(user.role ? JSON.stringify(user.role) : '');
     this.modalService.displayModal('md', this.addUsersModal);
   }
-  
 
   updateUser(user: IUser) {
     this.userService.update(user);
     this.modalService.closeAll();
   }
-
-  confirmDelete(user: IUser): void {
-      Swal.fire({
-        title: '¿Está seguro?',
-        text: `¿Desea eliminar el usuario: ${user.name} ${user.lastname}?`,
-        icon: 'warning',
-        background: '#1e1e1e', // dark background color 
-        color: '#ffffff',
-        iconColor: '#8F34E6',
-        showCancelButton: true,
-        confirmButtonColor: '#8F34E6',
-        cancelButtonColor: '#7B69F1',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.userService.delete(user);
-          Swal.fire({
-            title: "Eliminado!",
-            text: "El usuario ha sido eliminado.",
-            icon: "success",
-            background: '#1e1e1e', // dark background color 
-            color: '#ffffff',
-            iconColor: '#8F34E6',
-          });
-        }
-      });
-    }
-
-  clearForm() {
-    this.userForm.reset();
-    this.userForm.controls['email'].enable();
-  }
+  
 }
