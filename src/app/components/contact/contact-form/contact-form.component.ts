@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IContact } from '../../../interfaces';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -13,15 +14,30 @@ import { IContact } from '../../../interfaces';
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss'
 })
-export class ContactFormComponent {
+export class ContactFormComponent implements OnInit {
 
   @Input() title: string = '';
   @Input() contactForm!: FormGroup;
   @Output() callSendMethod: EventEmitter<IContact> = new EventEmitter<IContact>();
 
+  private authService = inject(AuthService);
+
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    const user = this.authService.getUser();
+    
+    this.contactForm = this.fb.group({
+      name: [user?.name || ''],
+      lastName: [user?.lastname || ''],
+      email: [user?.email || ''],
+      subject: [''],
+      message: ['']
+    });
+  }
 
   sendEmail() {
-    console.log('Save button clicked')
+    console.log('Save button clicked');
     let contact: IContact = {
       name: this.contactForm.controls['name'].value,
       email: this.contactForm.controls['email'].value,

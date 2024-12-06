@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil, WebcamModule } from 'ngx-webcam';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { ImageService } from '../../services/image.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
   standalone: true,
-  imports: [CommonModule, WebcamModule]
+  imports: [CommonModule, WebcamModule, FormsModule]
 })
 export class CameraComponent {
   public showWebcam = true;
@@ -20,14 +23,16 @@ export class CameraComponent {
   };
   public errors: WebcamInitError[] = [];
 
-  public webcamImages: WebcamImage[] = [];  
   public croppedImage: string | null = null; 
   public textContent: string = '';  
   public selectedTheme: string = ''; 
 
+  public webcamImages: WebcamImage[] = []; 
+  public imageNames: string[] = [];
+
   private trigger: Subject<void> = new Subject<void>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService,  private imageService: ImageService ) {}
 
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {
@@ -86,17 +91,42 @@ export class CameraComponent {
     return new Blob([u8arr], { type: mime });
   }
 
-
-  public downloadImage(): void {
-    if (this.webcamImages.length > 0) {
-      const latestImage = this.webcamImages[this.webcamImages.length - 1]; 
-      const link = document.createElement('a');
-      link.href = latestImage.imageAsDataUrl;
-      link.download = 'magicbooth-webcam-image.png';
-      link.click();
-    } else {
-      console.log('No image to download');
-    }
+ 
+  public downloadImage(image: WebcamImage, imageName: string): void {
+    const link = document.createElement('a');
+    link.href = image.imageAsDataUrl;
+    link.download = `${imageName || 'magicbooth-webcam-image'}.png`;
+    link.click();
   }
+
+
+  public uploadImage(image: WebcamImage, imageName: string): void {
+    const imageBlob = this.dataURLtoBlob(image.imageAsDataUrl); 
+    const imageFile = new File([imageBlob], `${imageName || 'webcam-image'}.png`, { type: imageBlob.type });
+    
+    const formData = new FormData();
+    formData.append('file', imageFile);
+    const authUser = localStorage.getItem('auth_user'); 
+    formData.append('imageName', imageName || 'webcam-image');
+     if (authUser) { 
+       const user = JSON.parse(authUser); 
+       const userId = user.id;
+        formData.append('userId', userId);
+        } else { 
+         console.error('User not found in localStorage');
+        }
+    
+  
+    this.imageService.uploadImage(formData).subscribe( 
+      (response) => { console.log('Image uploaded successfully', response);
+      },
+      (error) => { console.error('Error uploading image', error); 
+      } 
+    ); 
+  }
+   
+ 
+  
+
 
 }

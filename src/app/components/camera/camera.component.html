@@ -24,12 +24,7 @@
           Tomar Foto
         </button>
 
-        <button (click)="downloadImage()" class="btn btn-success">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill" viewBox="0 0 16 16">
-            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0"></path>
-          </svg>
-          Descargar
-        </button>
+        
       </div>
     </div>
   </section>
@@ -38,8 +33,18 @@
     <h2 class="gallery-title text-center">Galería de Imágenes Capturadas</h2>
     <div class="row mt-4">
       <div class="col-4" *ngFor="let image of webcamImages; let i = index">
+        <input type="text" [(ngModel)]="imageNames[i]" placeholder="Nombre de la imagen" class="form-control mb-2"/>
+        <button (click)="downloadImage(image, imageNames[i])" class="btn btn-success">
+          <i class="fas fa-download"></i>
+          Descargar
+        </button>
+        <button (click)="uploadImage(image, imageNames[i])" class="btn btn-warning">
+          <i class="fas fa-upload"></i>
+          Subir
+        </button>
         <img [src]="image.imageAsDataUrl" class="img-fluid rounded mb-2" [alt]="'Imagen ' + (i + 1)"/>
       </div>
+      
     </div>
   </section>
 

@@ -14,6 +14,9 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CameraComponent } from './components/camera/camera.component';
+import { GaleryComponent } from './pages/galery/galery.component';
+import { ApiComponent } from './components/api/api.component';
+import { TokenExpiredComponent } from './pages/token-expired/token-expired.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +42,10 @@ export const routes: Routes = [
   {
     path: 'access-denied',
     component: AccessDeniedComponent,
+  },
+  {
+    path: 'token-expired',
+    component: TokenExpiredComponent,
   },
   {
     path: '',
@@ -115,6 +122,30 @@ export const routes: Routes = [
           showInSidebar: true
         }
       },
+      {
+        path: 'galery',
+        component: GaleryComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Galeria',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'api',
+        component: ApiComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Api',
+          showInSidebar: true
+        }
+      }
     ],
   },
 ];
