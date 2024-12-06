@@ -1,4 +1,5 @@
-<section class="contact-section">
+
+<Section class="contact-section">
   <div class="container">
     <div class="row">
       <!-- Form Column -->
@@ -9,33 +10,32 @@
           </div>
   
           <div class="d-flex align-items-center mb-3">
-            <!-- Campo Nombre -->
             <div class="form-group me-3 w-50">
               <label for="name" class="form-label">Nombre</label>
-              <input id="name" formControlName="name" type="text" class="form-control" readonly>
+              <input id="name" formControlName="name" type="text" class="form-control">
+              <p *ngIf="contactForm.controls['name'].invalid && (contactForm.controls['name'].dirty || contactForm.controls['name'].touched)"
+                class="text-danger my-1">Nombre requerido</p>
             </div>
-            
-            <!-- Campo Apellido -->
             <div class="form-group w-50">
-              <label for="lastName" class="form-label">Apellido</label>
-              <input id="lastName" formControlName="lastName" type="text" class="form-control" readonly>
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input id="email" formControlName="email" type="text" class="form-control">
+              <p *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+                class="text-danger my-1">Correo requerido</p>
             </div>
-          </div>
-
-          <!-- Campo Correo Electrónico -->
-          <div class="form-group mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input id="email" formControlName="email" type="text" class="form-control" readonly>
           </div>
   
           <div class="form-group mb-3">
             <label for="subject" class="form-label mb-2">Asunto</label>
             <input id="subject" formControlName="subject" type="text" class="form-control">
+            <p *ngIf="contactForm.controls['subject'].invalid && (contactForm.controls['subject'].dirty || contactForm.controls['subject'].touched)"
+              class="text-danger my-1">Asunto requerido</p>
           </div>
   
           <div class="form-group mb-5">
             <label for="message" class="form-label mb-2">Mensaje</label>
             <textarea id="message" formControlName="message" class="form-control"></textarea>
+            <p *ngIf="contactForm.controls['message'].invalid && (contactForm.controls['message'].dirty || contactForm.controls['message'].touched)"
+              class="text-danger my-1">Mensaje requerido</p>
           </div>
   
           <div class="d-flex justify-content-end">
@@ -60,4 +60,4 @@
       </div>
     </div>
   </div>
-</section>
+</Section>

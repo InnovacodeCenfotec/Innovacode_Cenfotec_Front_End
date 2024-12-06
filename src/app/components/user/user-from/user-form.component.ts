@@ -21,6 +21,7 @@ export class UserFormComponent implements OnInit {
   roleService = inject(RoleService);
 
   @Input() userForm!: FormGroup;
+  @Input() roles: IRole[]=[];
   @Output() callSaveMethod: EventEmitter<IUser> = new EventEmitter<IUser>();
   @Output() callUpdateMethod: EventEmitter<IUser> = new EventEmitter<IUser>();
 
@@ -33,7 +34,7 @@ export class UserFormComponent implements OnInit {
       name: this.userForm.controls['name'].value,
       lastname: this.userForm.controls['lastname'].value,
       password: this.userForm.controls['password'].value,
-      enabled: this.userForm.controls['enabled'].value
+      role: this.userForm.controls['role'].value
     }
     if(this.userForm.controls['id'].value) {
       user.id = this.userForm.controls['id'].value;
