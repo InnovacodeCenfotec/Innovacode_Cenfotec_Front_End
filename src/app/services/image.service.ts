@@ -66,17 +66,7 @@ export class ImageService extends BaseService<IImage> {
   postLike(id: number): void {
     this.http.post(`${this.source}/${id}`, {}).subscribe({
       next: () => {
-        const updatedImages = this.imageListSignal().map(image => {
-          if (image.id === id) {
-            const updatedImage = { ...image, likes: (image.likesCount || 0) + 1 };
-            setTimeout(() => {
-              window.location.reload();
-            }, 100);
-            return updatedImage;
-          }
-          return image;
-        });
-        this.imageListSignal.set(updatedImages);
+        console.log('Image liked successfully');
       },
       error: (error: any) => {
         console.error('Error liking image:', error);

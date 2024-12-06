@@ -21,19 +21,7 @@ export class InstagramDashboardComponent implements OnInit {
 
   likeImage(imageId: number): void {
     this.imageService.postLike(imageId);
-    const updatedImages = this.imageService.images$().map(image => {
-      if (image.id === imageId) {
-        const updatedImage = { ...image, likes: (image.likesCount || 0) };
-        console.log(`Imagen ${imageId} tiene ahora ${updatedImage.likes} likes`); 
-        return updatedImage;
-      }
-      return image;
-    });
-  
-    // Actualiza la señal de imágenes con los nuevos likes
-    this.imageService.images$.set(updatedImages);
-
-    this.imageService.getAllImages();
+    window.location.reload();
   }
 
 }
