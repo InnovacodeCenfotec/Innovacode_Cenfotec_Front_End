@@ -8,6 +8,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProfileService extends BaseService<IUser> {
+  update(user: IUser) {
+    throw new Error('Method not implemented.');
+  }
+  updateUserProfile(updatedData: { name: string | undefined; lastname: string | undefined; phoneNumber: string | undefined; address: string | undefined; bio: any; avatarUrl: string; }) {
+  }
   protected override source: string = 'users/me';
   private userSignal = signal<IUser>({});
   private snackBar = inject(MatSnackBar);
@@ -34,13 +39,4 @@ export class ProfileService extends BaseService<IUser> {
       } 
     }); 
   }
-  
-  // constructor (
-  //   private http: HttpClient
-  // ) {}
-
-  // uploadFile(formData: FormData): Observable<any> {
-  //   return this.http.post('http://localhost:8080/media/upload', formData);
-  // }
-
 }

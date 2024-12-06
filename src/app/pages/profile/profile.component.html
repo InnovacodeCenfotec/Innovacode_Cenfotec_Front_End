@@ -44,23 +44,6 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="bio"> <i class="bi bi-file-earmark-text"></i> Biografía</label>
-        <textarea 
-          id="bio" 
-          placeholder="Cuéntanos sobre ti..." 
-          readonly
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="role"><i class="bi bi-person-lines-fill"></i> Role</label>
-        <input 
-          type="text" 
-          id="role" 
-          placeholder="{{profileService.user$().role?.name}}" 
-          readonly
-        />
-      </div>
-      <div class="form-group">
         <label for="lastUpdate"><i class="bi bi-hdd-stack"></i> Última actualización</label>
         <input 
           type="text" 
@@ -69,9 +52,20 @@
           readonly
         />
       </div>
-      <div class="profile-card-footer">
-        <button (click)="goToProfileUpdate()" class="btn btn-outline btn-edit btn-sm"> <i class="bi bi-pen"></i> Editar</button>
-      </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #updateProfileModal>
+  <app-modal 
+    [hideFooter]="true"
+  >
+    <div>
+      <app-profile-update
+        [profileForm]="profileForm"
+        (callUpdateMethod)="updateProfile($event)"
+      />
+    </div>
+  </app-modal>
+</ng-template>

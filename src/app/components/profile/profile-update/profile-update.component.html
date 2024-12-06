@@ -1,127 +1,85 @@
-<div class="profile-edit-container">
-    <div class="profile-card">
-      <div class="profile-card-content">
-        <div class="avatar-section">
-          <!-- Vista previa de la imagen -->
-          <img [src]="avatarUrl" alt="Foto de perfil" class="avatar" />
-          <button class="btn btn-outline btn-sm" (click)="triggerFileInput()">Cambiar foto</button>
-          <!-- Input oculto para subir la imagen -->
-          <input 
-            type="file" 
-            accept="image/*" 
-            #fileInput 
-            style="display: none;" 
-            (change)="onFileSelected($event)" 
-          />
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="name"><i class="bi bi-person"></i> Nombre de usuario</label>
-            <input 
-              type="text" 
-              id="name" 
-              placeholder="{{profileService.user$().name}}"
-              [ngClass]="{
-                'is-invalid': name.invalid && name.touched,
-                'is-valid': name.valid && name.touched
-              }" required aria-describedby="nameHelp" />
-            <div *ngIf="name.invalid" class="invalid-feedback">Por favor ingrese un nombre valido</div>
+<div *ngIf="profileForm">
+  <form [formGroup]="profileForm">
+    <div class="profile-edit-container">
+      <div class="profile-card">
+        <div class="profile-card-content">
+          <div class="avatar-section">
+            <!-- Vista previa de la imagen -->
+            <img [src]="url" *ngIf="url" alt="Foto de perfil" class="avatar" />
+            <!-- <button class="btn btn-outline btn-sm" (click)="triggerFileInput()">Cambiar foto</button>
+            Input oculto para subir la imagen -->
+            <input id="iamge" type="file" accept="image/*" #fileInput (change)="upload($event)"/>
           </div>
-          <div class="form-group">
-            <label for="lastname"><i class="bi bi-person"></i> Apellido de usuario</label>
-            <input 
-              type="text" 
-              id="lastname" 
-              placeholder="{{profileService.user$().lastname}}" [ngClass]="{
-                'is-invalid': lastname.invalid && lastname.touched,
-                'is-valid': lastname.valid && lastname.touched
-              }" required aria-describedby="lastnameHelp" />
-            <div *ngIf="lastname.invalid" class="invalid-feedback">Por favor ingrese un apellido valido</div>
-          </div>
-          <div class="form-group">
-            <label for="email"><i class="bi bi-envelope"></i> Correo electrónico</label>
-            <input 
-              type="email" 
-              id="email" 
-              placeholder="{{profileService.user$().email}}" 
-              readonly
-            />
-          </div>
-          <div class="form-group">
-            <label for="phone"><i class="bi bi-phone"></i> Número de teléfono</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              placeholder="{{profileService.user$().phoneNumber}}" [ngClass]="{
-                'is-invalid': phoneNumber.invalid && phoneNumber.touched,
-                'is-valid': phoneNumber.valid && phoneNumber.touched
-              }" required aria-describedby="phoneNumberHelp" />
-            <div *ngIf="phoneNumber.invalid" class="invalid-feedback">Por favor ingrese un numero valido</div>
-          </div>
-          <div class="form-group">
-            <label for="address"><i class="bi bi-geo-alt-fill"></i> Dirección</label>
-            <input 
-              type="text" 
-              id="address" 
-              placeholder="{{profileService.user$().address}}" [ngClass]="{
-                'is-invalid': address.invalid && address.touched,
-                'is-valid': address.valid && address.touched
-              }" required aria-describedby="addressHelp" />
-            <div *ngIf="address.invalid" class="invalid-feedback">Por favor ingrese una dirrecion valido</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="bio"> <i class="bi bi-file-earmark-text"></i> Biografía</label>
-          <textarea 
-            id="bio" 
-            placeholder="Cuéntanos sobre ti..."
-            [ngClass]="{
-              'is-invalid': biography.invalid && biography.touched,
-              'is-valid': biography.valid && biography.touched
-            }" required aria-describedby="biographyHelp"
-          ></textarea>
-          <div *ngIf="biography.invalid" class="invalid-feedback">Por favor ingrese una biografia valido</div>
-        </div>
-        <div class="form-group">
-          <label for="role"><i class="bi bi-person-lines-fill"></i> Role</label>
-          <input 
-            type="text" 
-            id="role" 
-            placeholder="{{profileService.user$().role?.name}}"
-            readonly
-          />
-        </div>
-        <div class="form-group">
-          <label for="lastUpdate"><i class="bi bi-hdd-stack"></i> Última actualización</label>
-          <input 
-            type="text" 
-            id="lastUpdate" 
-            placeholder="{{profileService.user$().updatedAt | date:'dd/MM/YYYY'}}"
-            readonly
-          />
-        </div>
-        <div class="password-section">
-          <div class="form-group">
-            <label for="new-password"><i class="bi bi-lock"></i> Nueva contraseña</label>
-            <div class="password-input">
-              <input type="password" id="new-password" placeholder="Nueva contraseña" 
-              required />
-              <div *ngIf="password.invalid && password.touched" class="invalid-feedback">Por favor ingrese una contraseña valida</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name"><i class="bi bi-person"></i> Nombre de usuario</label>
+              <input type="text" id="name" placeholder="{{profileService.user$().name}}"/>
+              <p *ngIf="profileForm.controls['name']?.invalid && (profileForm.controls['name']?.dirty || profileForm.controls['name']?.touched)">
+                Nombre es requerido
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="lastname"><i class="bi bi-person"></i> Apellido de usuario</label>
+              <input type="text" id="lastname" placeholder="{{profileService.user$().lastname}}"/>
+              @if (profileForm.controls['lastname'].invalid && (profileForm.controls['lastname'].dirty || profileForm.controls['lastname'].touched)) {
+                <p class="text-danger my-1">Apellido es requerido</p>
+              }
+            </div>
+            <div class="form-group">
+              <label for="email"><i class="bi bi-envelope"></i> Correo electrónico</label>
+              <input type="email" id="email" placeholder="{{profileService.user$().email}}" readonly/>
+            </div>
+            <div class="form-group">
+              <label for="phone"><i class="bi bi-phone"></i> Número de teléfono</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                placeholder="{{profileService.user$().phoneNumber}}"/>
+              @if (profileForm.controls['phoneNumber'].invalid && (profileForm.controls['phoneNumber'].dirty || profileForm.controls['phoneNumber'].touched)) {
+              <p class="text-danger my-1">Numero es requerido</p>
+                }
+            </div>
+            <div class="form-group">
+              <label for="address"><i class="bi bi-geo-alt-fill"></i> Dirección</label>
+              <input type="text" id="address" placeholder="{{profileService.user$().address}}"/>
+              @if (profileForm.controls['address'].invalid && (profileForm.controls['address'].dirty || profileForm.controls['address'].touched)) {
+              <p class="text-danger my-1">Direccion es requerido</p>
+              }
+            </div>
+            <div class="form-group">
+              <label for="role"><i class="bi bi-person-lines-fill"></i> Role</label>
+              <input type="text" id="role" placeholder="{{profileService.user$().role?.name}}" readonly/>
             </div>
           </div>
           <div class="form-group">
-            <label for="confirm-password"><i class="bi bi-lock" style="color: white;"></i> Confirmar contraseña</label>
-            <input type="password" id="confirm-password" placeholder="Confirmar contraseña" 
-            required />
-            <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="invalid-feedback">Por favor confirme su contraseña</div>
-            <div *ngIf="user.password !== user.confirmPassword && confirmPassword.touched" class="invalid-feedback">Passwords do not match</div>
+            <label for="lastUpdate"><i class="bi bi-hdd-stack"></i> Última actualización</label>
+            <input type="text" id="lastUpdate" placeholder="{{profileService.user$().updatedAt | date:'dd/MM/YYYY'}}" readonly
+            />
           </div>
-        </div>        
-        <div class="profile-card-footer">
-          <button (click)="goToProfile()" class="btn btn-outline btn-edit btn-sm">Cancelar</button>
-          <button (click)="goToProfile()" class="btn btn-primary btn-edit btn-sm">Guardar</button>
-        </div>        
+          <div class="password-section">
+            <div class="form-group">
+              <label for="new-password"><i class="bi bi-lock"></i> Nueva contraseña</label>
+              <div class="password-input">
+                <input type="password" id="new-password" placeholder="Nueva contraseña" required />
+                @if (profileForm.controls['password'].invalid && (profileForm.controls['password'].dirty || profileForm.controls['password'].touched)) {
+                <p class="text-danger my-1">Contraseña es requerida</p>
+                }
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password"><i class="bi bi-lock"></i> Confirmar contraseña</label>
+              <input type="password" id="confirm-password" placeholder="Confirmar contraseña"/>
+              @if (profileForm.controls['password'].invalid && (profileForm.controls['password'].dirty || profileForm.controls['password'].touched)) {
+                <p class="text-danger my-1">Contraseña es requerida</p>
+              }
+            </div>
+          </div>        
+          <div class="profile-card-footer">
+            <button (click)="goToProfile()" class="btn btn-outline btn-edit btn-sm">Cancelar</button>
+            <button (click)="callSave()" type="submit" class="btn btn-primary btn-edit btn-sm">Guardar</button>
+          </div>        
+        </div>
       </div>
-    </div>
-  </div>
-  
+    </div>  
+  </form>
+</div>

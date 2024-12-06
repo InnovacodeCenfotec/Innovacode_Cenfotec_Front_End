@@ -3,20 +3,37 @@ import { ProfileService } from './../../services/profile.service';
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { ProfileUpdateComponent } from "../../components/profile/profile-update/profile-update.component";
+import { IUser } from '../../interfaces';
+import { ModalService } from '../../services/modal.service';
+import { ModalComponent } from "../../components/modal/modal.component";
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink
-  ],
+    ProfileUpdateComponent,
+    ModalComponent,
+    ReactiveFormsModule
+],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
 
 export class ProfileComponent implements OnInit {
+  updateProfileModale: any;
+
+  updateProfile(user: IUser) {
+    this.profileService.update(user);
+    this.modalService.closeAll();
+  }
+
+  public modalService: ModalService = inject(ModalService);
+$event: any;
+
 
   @ViewChild('fileInput') fileInput!: ElementRef;
   avatarUrl: string = '../../../../assets/img/profile.png'; // Imagen predeterminada
@@ -25,12 +42,20 @@ export class ProfileComponent implements OnInit {
   activities: any;
   url?: string;
 
+  @ViewChild('updateProfileModal') public updateProfileModal: any;
+  public fb: FormBuilder = inject(FormBuilder);
+  profileForm = this.fb.group({
+    id: [''],
+    name: ['', Validators.required],
+    lastname: ['', Validators.required],
+    password: [''],
+  })
+
   constructor(private http: HttpClient, private fileUploadService : FileUploadService, private router: Router) {
     this.profileService.getUserInfoSignal();
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   goToProfileUpdate(): void {
@@ -80,5 +105,17 @@ export class ProfileComponent implements OnInit {
         },
       error: (err) => console.error('Error al subir la imagen:', err),
     })
+  }
+
+  callEdition(user: IUser) {
+    this.profileForm.controls['id'].setValue(user.id ? JSON.stringify(user.id) : '');
+    this.profileForm.controls['name'].setValue(user.name ? user.name : '');
+    this.profileForm.controls['lastname'].setValue(user.lastname ? user.lastname : '');
+    this.modalService.displayModal('md', this.updateProfileModal);
+  }
+
+  updateUser(user: IUser) {
+    this.profileService.update(user);
+    this.modalService.closeAll();
   }
 }
