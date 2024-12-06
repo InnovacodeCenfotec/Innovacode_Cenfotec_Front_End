@@ -3,20 +3,6 @@
     <h1 class="title">Magicbooth Dashboard</h1>
   </header>
 
-  <div class="search-settings">
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search"
-        class="search-input"
-      />
-      <span class="search-icon">🔍</span>
-    </div>
-    <button class="settings-btn">
-      <span class="settings-icon">⚙️</span>
-    </button>
-  </div>
-
   <main class="grid">
     <div *ngIf="images$() as images; else loading">
       <div

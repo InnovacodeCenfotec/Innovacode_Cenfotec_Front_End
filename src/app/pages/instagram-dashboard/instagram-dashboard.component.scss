@@ -3,8 +3,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #0000; // Fondo oscuro
-  color: #ffffff; // Texto principal
+  background-color: #0000; /* Fondo oscuro */
+  color: #ffffff; /* Texto principal */
 }
 
 /* Header */
@@ -12,75 +12,27 @@
   position: sticky;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centrado completo */
   align-items: center;
-  background-color: #0000; // Fondo oscuro
+  background-color: #0000; /* Fondo oscuro */
   margin-top: 2rem;
   padding: 1rem;
 
   h1 {
     font-size: 1.5rem;
-    color: #ff4081; // Rosa brillante
-  }
-}
-
-.search-bar {
-  display: flex;
-  position: relative;
-  flex-grow: 1;
-  max-width: 400px;
-
-  .search-input {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    padding-left: 2.5rem;
-    border: 1px solid #8F34E6;
-    border-radius: 1.5rem;
-    background-color: #1e1e1e; // Fondo secundario oscuro
-    color: #ffffff; // Texto blanco
-    outline: none;
-    transition: border-color 0.3s ease;
-
-    &:focus {
-      border-color: #ff4081; // Rosa brillante
-    }
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #b0bec5; // Gris claro
-  }
-}
-
-.settings-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  background: none;
-  border: none;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #ff80ab; // Rosa claro en hover
-  }
-
-  .settings-icon {
-    font-size: 1.5rem;
-    color: #ffffff; // Blanco
+    color: #ff4081; /* Rosa brillante */
+    text-align: center; /* Asegura que el título esté centrado */
   }
 }
 
 /* Grid */
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: 15rem; /* Mayor separación entre las imágenes */
   padding: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Tamaño más grande para las imágenes */
+  grid-auto-rows: 600px; /* Define una altura mínima para las filas */
+  grid-auto-flow: dense; /* Hace que los elementos se acomoden sin superponerse */
 }
 
 .grid-item {
@@ -91,7 +43,8 @@
   transition: transform 0.3s ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.15);
+    z-index: 10; /* Aumento del 15% en el hover */
   }
 
   &.large {
@@ -116,43 +69,28 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: rgba(255, 64, 129, 0.3); // Rosa brillante transparente
+      background-color: rgba(255, 64, 129, 0.3); /* Rosa brillante transparente */
       opacity: 1;
     }
 
     .favorite-btn {
-      background-color: #0000; // Fondo oscuro
+      background-color: #0000; /* Fondo oscuro */
       border: none;
       border-radius: 50%;
       padding: 0.5rem;
       font-size: 1.5rem;
-      color: #ff4081; // Rosa brillante
+      color: #ff4081; /* Rosa brillante */
       transition: all 0.3s ease;
 
       &.active {
-        color: #ffffff; // Blanco
-        background-color: #ff4081; // Rosa brillante
+        color: #ffffff; /* Blanco */
+        background-color: #ff4081; /* Rosa brillante */
       }
 
       &:hover {
-        background-color: #ff4081; // Rosa brillante
-        color: #ffffff; // Blanco
+        background-color: #ff4081; /* Rosa brillante */
+        color: #ffffff; /* Blanco */
       }
     }
   }
-
-  .search-settings {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Espacio entre barra de búsqueda y botón */
-  }
-
-  .magic-likes {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 8px;
-  }
-  
-
 }
