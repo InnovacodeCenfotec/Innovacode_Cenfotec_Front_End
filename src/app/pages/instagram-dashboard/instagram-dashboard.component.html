@@ -25,19 +25,22 @@
         [class.large]="i % 5 === 0"
         class="grid-item"
       >
-        <!-- Use 'url' instead of 'src' -->
+        <!-- Display image -->
         <img [src]="image.url" [alt]="image.name || 'Image'" class="grid-img" />
+        
         <div class="overlay">
+          <!-- Button for liking an image -->
           <button
             class="favorite-btn"
-            [class.active]="favorites.includes(i)"
-            (click)="toggleFavorite(i)"
+            [class.active]="image.likes ?? 0 > 0" 
+            (click)="image.id ? likeImage(image.id) : null"
           >
-            ❤️
+            ❤️ {{ image.likes ?? 0 }}
           </button>
         </div>
       </div>
     </div>
+    
     <!-- Loading state -->
     <ng-template #loading>
       <p>Loading images...</p>

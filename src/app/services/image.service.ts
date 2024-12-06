@@ -62,4 +62,27 @@ export class ImageService extends BaseService<IImage>{
       }
     });
   }
+
+  postLike(id: number): void {
+    this.http.post(`${this.source}/${id}`, {}).subscribe({
+      next: () => {
+        // Actualizar localmente los likes si es necesario
+        const updatedImages = this.imageListSignal().map(image => {
+          if (image.id === id) {
+            return { ...image, likes: (image.likes || 0) + 1 }; // Incrementar los likes
+          }
+          return image;
+        });
+        this.imageListSignal.set(updatedImages);
+      },
+      error: (error: any) => {
+        console.error('Error liking image:', error);
+      }
+    });
+  }
+
+  getLikesById(id: number): Observable<number> {
+    return this.http.get<number>(`${this.source}/${id}/likes`); // Asegúrate de que devuelve un número
+  }
 }
+
