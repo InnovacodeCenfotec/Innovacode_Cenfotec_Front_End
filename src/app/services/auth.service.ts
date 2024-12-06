@@ -124,7 +124,12 @@ export class AuthService {
     }          
     return allowedUser && isAdmin;
   }
+
   loginWithGoogle(idToken: string | null): Observable<any> {
     return this.http.post("http://localhost:8080/auth/google-login", { idToken });
+  }
+
+  getUserProfile(): Observable<IUser> { 
+    return this.http.get<IUser>('/users/me'); 
   }
 }

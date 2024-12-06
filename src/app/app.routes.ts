@@ -14,6 +14,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CameraComponent } from './components/camera/camera.component';
+import { ProfileUpdateComponent } from './components/profile/profile-update/profile-update.component';
 
 export const routes: Routes = [
   {
@@ -88,6 +89,18 @@ export const routes: Routes = [
             IRoleType.user
           ],
           name: 'profile',
+          showInSidebar: false
+        }
+      },
+      {
+        path: 'profile-update',
+        component: ProfileUpdateComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user
+          ],
+          name: 'profile-update',
           showInSidebar: false
         }
       },

@@ -25,6 +25,37 @@
   }
 }
 
+.profile-card-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem; 
+}
+
+.btn-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; 
+  width: 100%;  
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 15px; 
+  background-color: #8f34e6;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: #7a2cc4;
+    transform: scale(1.05); 
+  }
+
+  i {
+    font-size: 1rem; 
+  }
+}
+
 .avatar-section {
   display: flex;
   flex-direction: column;
@@ -62,6 +93,11 @@
     i {
       font-size: 1rem;
     }
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: white;
   }
 
   input,

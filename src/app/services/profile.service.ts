@@ -16,23 +16,23 @@ export class ProfileService extends BaseService<IUser> {
     return  this.userSignal;
   }
 
-  getUserInfoSignal() {
-    this.findAll().subscribe({
-      next: (response: any) => {
-        this.userSignal.set(response);
-      },
-      error: (error: any) => {
-        this.snackBar.open(
-          `Error getting user profile info ${error.message}`,
-           'Close', 
-          {
+  getUserInfoSignal() { 
+    this.findAll().subscribe({ 
+      next: (response: any) => { 
+        this.userSignal.set(response); 
+    }, 
+    error: (error: any) => { 
+      this.snackBar.open( 
+        `Error getting user profile info ${error.message}`, 
+        'Close', 
+          { 
             horizontalPosition: 'right', 
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          }
-        )
-      }
-    })
+            verticalPosition: 'top', 
+            panelClass: ['error-snackbar'] 
+          } 
+        ) 
+      } 
+    }); 
   }
   
   // constructor (
