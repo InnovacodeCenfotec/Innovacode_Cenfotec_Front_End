@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ImageService extends BaseService<IImage>{
+export class ImageService extends BaseService<IImage> {
   protected override source: string = 'cloudinary'; 
   private imageListSignal = signal<IImage[]>([]);
 
@@ -38,21 +38,21 @@ export class ImageService extends BaseService<IImage>{
 
   uploadImage(file: File): Observable<any> {
     const formData: FormData = new FormData();
-     formData.append('file', file);
-     const authUser = localStorage.getItem('auth_user'); 
-     if (authUser) { 
-       const user = JSON.parse(authUser); 
-       const userId = user.id;
-        formData.append('userId', userId);
-        } else { 
-         console.error('User not found in localStorage');
-        }
-   
-   return this.http.post(this.source, formData);
+    formData.append('file', file);
+    const authUser = localStorage.getItem('auth_user');
+    if (authUser) { 
+      const user = JSON.parse(authUser); 
+      const userId = user.id;
+      formData.append('userId', userId);
+    } else { 
+      console.error('User not found in localStorage');
+    }
+
+    return this.http.post(this.source, formData);
   }
 
   deleteImage(id: number): void {
-    this.http.delete(`${this.source}${id}`).subscribe({
+    this.http.delete(`${this.source}/${id}`).subscribe({
       next: () => {
         const updatedImages = this.imageListSignal().filter(image => image.id !== id);
         this.imageListSignal.set(updatedImages);
@@ -66,10 +66,13 @@ export class ImageService extends BaseService<IImage>{
   postLike(id: number): void {
     this.http.post(`${this.source}/${id}`, {}).subscribe({
       next: () => {
-        // Actualizar localmente los likes si es necesario
         const updatedImages = this.imageListSignal().map(image => {
           if (image.id === id) {
-            return { ...image, likes: (image.likes || 0) + 1 }; // Incrementar los likes
+            const updatedImage = { ...image, likes: (image.likesCount || 0) + 1 };
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
+            return updatedImage;
           }
           return image;
         });
@@ -80,9 +83,4 @@ export class ImageService extends BaseService<IImage>{
       }
     });
   }
-
-  getLikesById(id: number): Observable<number> {
-    return this.http.get<number>(`${this.source}/${id}/likes`); // Asegúrate de que devuelve un número
-  }
 }
-

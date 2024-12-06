@@ -18,30 +18,26 @@
   </div>
 
   <main class="grid">
-    <!-- Ensure images are loaded -->
     <div *ngIf="images$() as images; else loading">
       <div
         *ngFor="let image of images; let i = index"
         [class.large]="i % 5 === 0"
         class="grid-item"
       >
-        <!-- Display image -->
         <img [src]="image.url" [alt]="image.name || 'Image'" class="grid-img" />
         
         <div class="overlay">
-          <!-- Button for liking an image -->
           <button
             class="favorite-btn"
-            [class.active]="image.likes ?? 0 > 0" 
+            [class.active]="(image.likesCount ?? 0) > 0"
             (click)="image.id ? likeImage(image.id) : null"
           >
-            ❤️ {{ image.likes ?? 0 }}
+            ❤️ {{ image.likesCount ?? 0 }}
           </button>
         </div>
       </div>
     </div>
     
-    <!-- Loading state -->
     <ng-template #loading>
       <p>Loading images...</p>
     </ng-template>
