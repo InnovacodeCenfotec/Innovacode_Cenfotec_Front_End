@@ -47,5 +47,4 @@ export class UserListComponent implements OnChanges {
     this.userService.update(params);
     this.modalService.dismissAll();
   }
-  
 }

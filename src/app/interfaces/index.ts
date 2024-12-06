@@ -20,7 +20,6 @@ export interface IUser {
   authorities?: IAuthority[];
   role?: IRole;
   imageList?: IImage[];
-  enabled?: boolean;
 }
 
 export interface IAuthority {
@@ -49,6 +48,16 @@ export interface IRole {
   id: number;
   name : string;
   updatedAt: string;
+}
+
+export interface IGame {
+  id?: number;
+  name?: string;
+  imgURL?: string;
+  status?: string;
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ISearch {
