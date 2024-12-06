@@ -3,6 +3,7 @@ import { IAuthority, IImage, ILoginResponse, IResponse, IRoleType, IUser } from 
 import { Observable, catchError, firstValueFrom, map, of, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from './alert.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class AuthService {
   private user: IUser = {email: '', authorities: []};
   private http: HttpClient = inject(HttpClient);
   private alertService: AlertService = inject(AlertService);
+  private apiUrl = environment.apiUrl;
 
 
   constructor() {
@@ -154,10 +156,18 @@ export class AuthService {
     }          
     return allowedUser && isAdmin;
   }
+
   loginWithGoogle(idToken: string | null): Observable<any> {
     return this.http.post("http://localhost:8080/auth/google-login", { idToken });
   }
 
+  getUserProfile(): Observable<IUser> { 
+    return this.http.get<IUser>('/users/me'); 
+  }
+
+  updateProfile(user: IUser): Observable<IUser> {
+    return this.http.put<IUser>(`/profile`, user);
+  }
   
   uploadImage(file: File): Observable<any> {
     const formData: FormData = new FormData();
@@ -172,6 +182,10 @@ export class AuthService {
         }
    
    return this.http.post("auth/saveImage", formData);
+  }
+
+  uploadFile(formData: FormData): Observable<any> { 
+    return this.http.post(`media/upload`, formData); 
   }
  
   getImageToken(imageId: number): Promise<string> { 
