@@ -17,7 +17,6 @@ import { CameraComponent } from './components/camera/camera.component';
 import { GaleryComponent } from './pages/galery/galery.component';
 import { ApiComponent } from './components/api/api.component';
 import { InstagramDashboardComponent } from './pages/instagram-dashboard/instagram-dashboard.component';
-import { TokenExpiredComponent } from './pages/token-expired/token-expired.component';
 
 export const routes: Routes = [
   {
@@ -43,10 +42,6 @@ export const routes: Routes = [
   {
     path: 'access-denied',
     component: AccessDeniedComponent,
-  },
-  {
-    path: 'token-expired',
-    component: TokenExpiredComponent,
   },
   {
     path: '',

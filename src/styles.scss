@@ -1,6 +1,6 @@
 :root {
   --theme-default: #7366ff;
-  --theme-secondary: #6595F6;
+  --theme-secondary: #f73164;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;
@@ -61,12 +61,11 @@ footer{background-color: black;}
 
 
 .error-snackbar .mdc-snackbar__surface{
-  background-color: #8F34E6 !important;
-  color: #ecf3fa;
+  background-color: rgb(197, 49, 49) !important;
 }
 
 .success-snackbar .mdc-snackbar__surface{
-  background-color: #6595F6 !important;
+  background-color: rgb(54, 197, 49) !important;
 }
 
 

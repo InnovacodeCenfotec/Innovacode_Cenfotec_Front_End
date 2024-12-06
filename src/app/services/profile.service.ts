@@ -2,7 +2,6 @@ import { Injectable, inject, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { IUser } from '../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +33,5 @@ export class ProfileService extends BaseService<IUser> {
       }
     })
   }
-  
-  // constructor (
-  //   private http: HttpClient
-  // ) {}
-
-  // uploadFile(formData: FormData): Observable<any> {
-  //   return this.http.post('http://localhost:8080/media/upload', formData);
-  // }
 
 }

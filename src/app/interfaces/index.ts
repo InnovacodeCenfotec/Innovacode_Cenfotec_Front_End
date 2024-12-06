@@ -12,19 +12,14 @@ export interface IUser {
   name?: string;
   lastname?: string;
   email?: string;
-  phoneNumber?: string;
-  address?: string;
   password?: string;
   confirmPassword?: string;
-  photoUrl?: string;
   active?: boolean;
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
   role?: IRole;
   imageList?: IImage[];
-  enabled?: boolean;
-  biography?:string;
 }
 
 export interface IAuthority {
@@ -53,6 +48,16 @@ export interface IRole {
   id: number;
   name : string;
   updatedAt: string;
+}
+
+export interface IGame {
+  id?: number;
+  name?: string;
+  imgURL?: string;
+  status?: string;
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ISearch {
