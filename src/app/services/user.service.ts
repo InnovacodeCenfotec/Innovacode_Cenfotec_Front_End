@@ -17,7 +17,7 @@ export class UserService extends BaseService<IUser> {
   }
   public search: ISearch = { 
     page: 1,
-    size: 5
+    size: 20
   }
   public totalItems: any = [];
   private alertService: AlertService = inject(AlertService);

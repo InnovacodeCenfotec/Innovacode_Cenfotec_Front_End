@@ -19,7 +19,7 @@ export interface IUser {
   updatedAt?: string;
   authorities?: IAuthority[];
   role?: IRole;
-  imageList?: IImage[];
+  enabled?: boolean;
 }
 
 export interface IAuthority {
