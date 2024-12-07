@@ -17,7 +17,6 @@ import { CameraComponent } from './components/camera/camera.component';
 import { ProfileUpdateComponent } from './components/profile/profile-update/profile-update.component';
 import { GaleryComponent } from './pages/galery/galery.component';
 import { ApiComponent } from './components/api/api.component';
-import { InstagramDashboardComponent } from './pages/instagram-dashboard/instagram-dashboard.component';
 import { TokenExpiredComponent } from './pages/token-expired/token-expired.component';
 
 export const routes: Routes = [
@@ -72,7 +71,7 @@ export const routes: Routes = [
           authorities: [
             IRoleType.superAdmin
           ],
-          name: 'Usuarios',
+          name: 'Usarios',
           showInSidebar: true
         }
       },
@@ -159,19 +158,7 @@ export const routes: Routes = [
           name: 'Api',
           showInSidebar: true
         }
-      },
-      {
-        path: 'instagram-dashboard',
-        component: InstagramDashboardComponent,
-        data: { 
-          authorities: [
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
-          name: 'Explorador',
-          showInSidebar: true
-        }
-      },
+      }
     ],
   },
 ];

@@ -91,5 +91,4 @@ export interface IImage {
   saveurl?:string;
   createDate?: Date;
   user?: IUser;
-  likesCount?: number;
 }
