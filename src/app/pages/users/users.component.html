@@ -9,7 +9,7 @@
     <div class="col-12">
       <app-user-list
         (callModalAction)="callEdition($event)"
-        (callDeleteAction)="confirmDelete($event)"
+        (callDeleteAction)="userService.delete($event)"
         [users]="userService.users$()"
       />
       @if(userService.users$().length) {
@@ -23,7 +23,6 @@
   <app-loader></app-loader>
 }
 
-
 <ng-template #addUsersModal class="cover">
   <app-modal
     [hideFooter]="true"
@@ -33,8 +32,8 @@
         [userForm]="userForm"
         (callSaveMethod)="saveUser($event)"
         (callUpdateMethod)="updateUser($event)"
+        [roles]="roleService.roles$()"
       />
-      <!-- [roles]="roleService.roles$()"-->
     </div>
   </app-modal>
 </ng-template>

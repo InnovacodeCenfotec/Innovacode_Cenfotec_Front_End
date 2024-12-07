@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AuthGoogleService } from '../../../services/auth-google.service';
 import { AlertService } from '../../../services/alert.service';
+import { AuthFacebookService } from '../../../services/auth-facebook.service';
+import { AuthGithubService } from '../../../services/auth-github.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,6 @@ import { AlertService } from '../../../services/alert.service';
 })
 export class LoginComponent{
   private authGoogleService = inject(AuthGoogleService);
-
   public loginError!: string;
   loginStatus: boolean = false;
   @ViewChild('email') emailModel!: NgModel;
@@ -45,9 +46,9 @@ export class LoginComponent{
       this.authService.login(this.loginForm).subscribe({
         next: () => this.router.navigateByUrl('/app/dashboard'),
         error: (err: any) => {
-          console.log("error",err);
-          this.loginStatus = false; //true antes
-          this.loginError = err.description;
+          console.log("error");
+          this.loginStatus = true;
+          this.loginError = err.error.description;
         }
       });
     }

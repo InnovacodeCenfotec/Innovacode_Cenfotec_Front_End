@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IAuthority, IImage, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
-import { Observable, catchError, firstValueFrom, map, of, tap, throwError } from 'rxjs';
+import { Observable, firstValueFrom, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from './alert.service';
 import { environment } from '../../environments/environment';
@@ -15,7 +15,6 @@ export class AuthService {
   private http: HttpClient = inject(HttpClient);
   private alertService: AlertService = inject(AlertService);
   private apiUrl = environment.apiUrl;
-
 
   constructor() {
     this.load();
@@ -55,8 +54,11 @@ export class AuthService {
       return true;
     }
   }
-/*
-  public login(credentials: {email: string; password: string;}): Observable<ILoginResponse> {
+
+  public login(credentials: {
+    email: string;
+    password: string;
+  }): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>('auth/login', credentials).pipe(
       tap((response: any) => {
         this.accessToken = response.token;
@@ -64,39 +66,9 @@ export class AuthService {
         this.expiresIn = response.expiresIn;
         this.user = response.authUser;
         this.save();
-        this.alertService.displayAlert(
-          'success',
-          '¡Bienvenido '+ this.user.name + '!',
-          'center',
-          'top',
-          ['success-snackbar']
-        )
       })
     );
-  }*/
-    public login(credentials: { email: string; password: string }): Observable<ILoginResponse> {
-      return this.http.post<ILoginResponse>('auth/login', credentials).pipe(
-        tap((response: any) => {
-          this.accessToken = response.token;
-          this.user.email = credentials.email;
-          this.expiresIn = response.expiresIn;
-          this.user = response.authUser;
-          this.save();
-          this.alertService.displayAlert(
-            'success',
-            '¡Bienvenido ' + this.user.name + '!',
-            'center',
-            'top',
-            ['success-snackbar']
-          );
-        }),
-        catchError((err: any) => {
-          console.log('Error de login AUTH.SERVICE:', err);
-          return throwError(() => err);
-        })
-      );
-    }
-    
+  }
 
   public hasRole(role: string): boolean {
     return this.user.authorities ?  this.user?.authorities.some(authority => authority.authority == role) : false;
