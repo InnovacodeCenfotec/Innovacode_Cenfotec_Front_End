@@ -27,9 +27,9 @@
     <div class="container">
       <h2>{{image?.name}}</h2>
       <div class="container-buttons">
-        <button type="button" class="btn btn-purple" (click)="modalService.displayModal('md', share)"><i class="fas fa-share"></i></button>
         <button type="button" class="btn btn-purple" (click)="downloadImage()"><i class="fas fa-download"></i></button>
         <button type="button" class="btn btn-purple" (click)="modalService.displayModal('md', deleteConfirm)"><i class="fas fa-trash"></i></button>
+        <button type="button" class="btn btn-purple" (click)="editImage()"><i class="fas fa-edit"></i></button>
       </div>
     </div>
       <img
@@ -37,11 +37,8 @@
                 [src]="image?.url || 'assets/img/noImageFound.png'"alt="Imagen"
                 alt="Primera imagen"
               />
-
-                <div>
-                  <h3 style="margin-top: 10px;">Fecha de creacion: {{ formattedDate }}</h3>
-                  <h3>Tamaño: {{ imageSize }}</h3>
-                </div>
+              <h3 style="margin-top: 10px;">Fecha de creacion: {{ formattedDate }}</h3>
+              <h3>Tamaño: {{ imageSize }}</h3>
     </app-modal>
   </ng-template>
   

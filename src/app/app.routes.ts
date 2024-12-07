@@ -14,8 +14,9 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CameraComponent } from './components/camera/camera.component';
+import { ProfileUpdateComponent } from './components/profile/profile-update/profile-update.component';
 import { GaleryComponent } from './pages/galery/galery.component';
-import { TokenExpiredComponent } from './pages/token-expired/token-expired.component';
+import { ApiComponent } from './components/api/api.component';
 
 export const routes: Routes = [
   {
@@ -41,10 +42,6 @@ export const routes: Routes = [
   {
     path: 'access-denied',
     component: AccessDeniedComponent,
-  },
-  {
-    path: 'token-expired',
-    component: TokenExpiredComponent,
   },
   {
     path: '',
@@ -98,6 +95,18 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'profile-update',
+        component: ProfileUpdateComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user
+          ],
+          name: 'profile-update',
+          showInSidebar: false
+        }
+      },
+      {
         path: 'contact',
         component: ContactComponent,
         data: { 
@@ -130,6 +139,18 @@ export const routes: Routes = [
             IRoleType.user,
           ],
           name: 'Galeria',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'api',
+        component: ApiComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Api',
           showInSidebar: true
         }
       }

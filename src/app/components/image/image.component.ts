@@ -6,14 +6,13 @@ import { HttpClient } from '@angular/common/http';
 import { ModalComponent } from "../modal/modal.component";
 import { ModalService } from '../../services/modal.service';
 import { CommonModule } from '@angular/common';
-import { ShareButtonDirective } from 'ngx-sharebuttons';
 
 @Component({
   selector: 'app-image',
   standalone: true,
   templateUrl: './image.component.html',
   styleUrl: './image.component.scss',
-  imports: [ModalComponent, CommonModule, ShareButtonDirective]
+  imports: [ModalComponent, CommonModule]
 })
 export class ImageComponent implements OnInit{
   @Input() image: IImage | null = null; 
@@ -76,6 +75,16 @@ export class ImageComponent implements OnInit{
     }
   }
   
+  editImage(){
+     if(this.image && this.image.id != null){
+       localStorage.setItem('image_ID', this.image.id.toString()); 
+       setTimeout(() => {
+        window.location.href = '/app/api';
+        }, 2000);
+      } else { 
+        console.error('La imagen o su ID es nula'); 
+      }
+  }
   
   deleteImage() {
     if (!this.image || !this.image.id) return;

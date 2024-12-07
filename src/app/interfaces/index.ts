@@ -12,14 +12,19 @@ export interface IUser {
   name?: string;
   lastname?: string;
   email?: string;
+  phoneNumber?: string;
+  address?: string;
   password?: string;
   confirmPassword?: string;
+  photoUrl?: string;
   active?: boolean;
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
   role?: IRole;
   imageList?: IImage[];
+  enabled?: boolean;
+  biography?:string;
 }
 
 export interface IAuthority {
@@ -86,10 +91,14 @@ export interface IContact {
   message?: string;
 }
 
+export interface Ijwt{
+  jwt?:string;}
+  
 export interface IImage {
   id?: number;
   name?: string;
   url?: string;
+  saveurl?:string;
   createDate?: Date;
   user?: IUser;
 }

@@ -6,7 +6,7 @@
     <label class="mb-1" for="email">Correo Electronico*</label>
     <input id="email" formControlName="email" type="email" class="form-control">
     @if (userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)) {
-      <p class="text-danger my-1">Email is required</p>
+      <p class="text-danger my-1">Email es requerido\</p>
     }
     @if (userForm.controls['email'].errors?.['email'] && (userForm.controls['email'].dirty || userForm.controls['email'].touched)) {
       <p class="text-danger my-1">Correo Electronico Invalido</p>

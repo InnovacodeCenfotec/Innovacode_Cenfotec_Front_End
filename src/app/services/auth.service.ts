@@ -1,7 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { IAuthority, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
+import { IAuthority, IImage, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
 import { Observable, firstValueFrom, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AlertService } from './alert.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,8 @@ export class AuthService {
   private expiresIn! : number;
   private user: IUser = {email: '', authorities: []};
   private http: HttpClient = inject(HttpClient);
+  private alertService: AlertService = inject(AlertService);
+  private apiUrl = environment.apiUrl;
 
   constructor() {
     this.load();
@@ -124,7 +128,44 @@ export class AuthService {
     }          
     return allowedUser && isAdmin;
   }
+
   loginWithGoogle(idToken: string | null): Observable<any> {
     return this.http.post("http://localhost:8080/auth/google-login", { idToken });
   }
+
+  getUserProfile(): Observable<IUser> { 
+    return this.http.get<IUser>('/users/me'); 
+  }
+
+  updateProfile(user: IUser): Observable<IUser> {
+    return this.http.put<IUser>(`/profile`, user);
+  }
+  
+  uploadImage(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+     formData.append('file', file);
+     const authUser = localStorage.getItem('auth_user'); 
+     if (authUser) { 
+       const user = JSON.parse(authUser); 
+       const userId = user.id;
+        formData.append('userId', userId);
+        } else { 
+         console.error('User not found in localStorage');
+        }
+   
+   return this.http.post("auth/saveImage", formData);
+  }
+
+  uploadFile(formData: FormData): Observable<any> { 
+    return this.http.post(`media/upload`, formData); 
+  }
+ 
+  getImageToken(imageId: number): Promise<string> { 
+    return this.http.get(`auth/imagetoken/${imageId}`, { responseType: 'text' }).toPromise().then(response => { 
+      if (response) { return response; } else { throw new Error('No se recibió un token válido'); 
+
+      } 
+    });
+   }
+  
 }
