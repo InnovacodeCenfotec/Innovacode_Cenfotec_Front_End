@@ -139,7 +139,7 @@ export const routes: Routes = [
             IRoleType.user,
           ],
           name: 'Api',
-          showInSidebar: true
+          showInSidebar: false
         }
       },
       {
