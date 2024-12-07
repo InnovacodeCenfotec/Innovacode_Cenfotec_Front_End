@@ -67,7 +67,13 @@
     "angular-oauth2-oidc": {
       "src": "../../../../../node_modules/angular-oauth2-oidc/fesm2022/angular-oauth2-oidc.mjs",
       "file": "angular-oauth2-oidc.js",
-      "fileHash": "a9d0c402",
+      "fileHash": "7489275b",
+      "needsInterop": false
+    },
+    "ngx-sharebuttons": {
+      "src": "../../../../../node_modules/ngx-sharebuttons/fesm2022/ngx-sharebuttons.mjs",
+      "file": "ngx-sharebuttons.js",
+      "fileHash": "442ab068",
       "needsInterop": false
     },
     "ngx-webcam": {
@@ -95,6 +101,9 @@
     },
     "chunk-V3FD5HXO": {
       "file": "chunk-V3FD5HXO.js"
+    },
+    "chunk-K2NDXIF7": {
+      "file": "chunk-K2NDXIF7.js"
     },
     "chunk-227N6YR3": {
       "file": "chunk-227N6YR3.js"

@@ -47,9 +47,9 @@ export class ImageService extends BaseService<IImage> {
     } else { 
       console.error('User not found in localStorage');
     }
-
     return this.http.post(this.source, formData);
   }
+  
 
   deleteImage(id: number): void {
     this.http.delete(`${this.source}/${id}`).subscribe({

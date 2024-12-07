@@ -14,9 +14,9 @@ export class AuthGoogleService {
   public isProcessingGoogleAutentication: any = localStorage.getItem('isProcessingGoogleAutentication') ? localStorage.getItem('isProcessingGoogleAutentication') : 'false';
   public authService = inject(AuthService);
 
-  constructor() { 
-    this.configureOAuth();
-  }
+  // constructor() { 
+  //   this.configureOAuth();
+  // }
 
   private configureOAuth() {
     const config: AuthConfig = {
