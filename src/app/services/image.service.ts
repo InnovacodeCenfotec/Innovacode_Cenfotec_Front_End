@@ -24,6 +24,7 @@ export class ImageService extends BaseService<IImage>{
     });
   }
 
+  // Eliminacion tambien en cloudinary
   deleteImage(id: number): void {
     this.http.delete(`${this.source}${id}`).subscribe({
       next: () => {
