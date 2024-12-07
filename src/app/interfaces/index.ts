@@ -55,16 +55,6 @@ export interface IRole {
   updatedAt: string;
 }
 
-export interface IGame {
-  id?: number;
-  name?: string;
-  imgURL?: string;
-  status?: string;
-  description?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
 export interface ISearch {
   page?: number;
   size?: number;

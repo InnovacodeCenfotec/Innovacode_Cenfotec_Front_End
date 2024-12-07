@@ -15,6 +15,7 @@ import { AlertService } from '../../../services/alert.service';
 })
 export class LoginComponent{
   private authGoogleService = inject(AuthGoogleService);
+
   public loginError!: string;
   loginStatus: boolean = false;
   @ViewChild('email') emailModel!: NgModel;
@@ -44,9 +45,9 @@ export class LoginComponent{
       this.authService.login(this.loginForm).subscribe({
         next: () => this.router.navigateByUrl('/app/dashboard'),
         error: (err: any) => {
-          console.log("error");
-          this.loginStatus = true;
-          this.loginError = err.error.description;
+          console.log("error",err);
+          this.loginStatus = false; //true antes
+          this.loginError = err.description;
         }
       });
     }
