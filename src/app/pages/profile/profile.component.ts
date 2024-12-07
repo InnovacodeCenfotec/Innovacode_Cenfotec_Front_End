@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { FileUploadService } from './../../services/file-upload.service';
 import { ProfileService } from './../../services/profile.service';
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
@@ -10,11 +9,6 @@ import { IUser } from '../../interfaces';
 import { ModalService } from '../../services/modal.service';
 import { ModalComponent } from "../../components/modal/modal.component";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-=======
-import { Component, inject } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
-import { CommonModule } from '@angular/common';
->>>>>>> InstaDashLikes
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +22,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-<<<<<<< HEAD
 
 export class ProfileComponent implements OnInit {
   updateProfileModale: any;
@@ -45,12 +38,10 @@ $event: any;
   @ViewChild('fileInput') fileInput!: ElementRef;
   avatarUrl: string = '../../../../assets/img/profile.png'; // Imagen predeterminada
   selectedFile: File | null = null;
-=======
-export class ProfileComponent {
->>>>>>> InstaDashLikes
   public profileService = inject(ProfileService);
+  activities: any;
+  url?: string;
 
-<<<<<<< HEAD
   @ViewChild('updateProfileModal') public updateProfileModal: any;
   public fb: FormBuilder = inject(FormBuilder);
   profileForm = this.fb.group({
@@ -127,9 +118,4 @@ export class ProfileComponent {
     this.profileService.update(user);
     this.modalService.closeAll();
   }
-=======
-  constructor() {
-    this.profileService.getUserInfoSignal();
-  }
->>>>>>> InstaDashLikes
 }
