@@ -39,4 +39,16 @@ export class ProfileService extends BaseService<IUser> {
       } 
     }); 
   }
+<<<<<<< HEAD
+=======
+  
+  // constructor (
+  //   private http: HttpClient
+  // ) {}
+
+  // uploadFile(formData: FormData): Observable<any> {
+  //   return this.http.post('http://localhost:8080/media/upload', formData);
+  // }
+
+>>>>>>> parent of 491cac5 (Revert "Merge branch 'Presentacion2' into InstaDashLikes")
 }

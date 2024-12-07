@@ -3,7 +3,10 @@ import { IAuthority, IImage, ILoginResponse, IResponse, IRoleType, IUser } from 
 import { Observable, catchError, firstValueFrom, map, of, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from './alert.service';
+<<<<<<< HEAD
 import { environment } from '../../environments/environment';
+=======
+>>>>>>> parent of 491cac5 (Revert "Merge branch 'Presentacion2' into InstaDashLikes")
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +17,10 @@ export class AuthService {
   private user: IUser = {email: '', authorities: []};
   private http: HttpClient = inject(HttpClient);
   private alertService: AlertService = inject(AlertService);
+<<<<<<< HEAD
   private apiUrl = environment.apiUrl;
+=======
+>>>>>>> parent of 491cac5 (Revert "Merge branch 'Presentacion2' into InstaDashLikes")
 
 
   constructor() {

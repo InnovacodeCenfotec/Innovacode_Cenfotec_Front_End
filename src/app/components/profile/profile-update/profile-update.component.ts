@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileService } from '../../../services/profile.service';
@@ -6,10 +7,14 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { IUser } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
 import { ResetPasswordService } from '../../../services/reset-password.service';
+=======
+import { Component } from '@angular/core';
+>>>>>>> parent of 491cac5 (Revert "Merge branch 'Presentacion2' into InstaDashLikes")
 
 @Component({
   selector: 'app-profile-update',
   standalone: true,
+<<<<<<< HEAD
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './profile-update.component.html',
   styleUrls: ['./profile-update.component.scss']
@@ -82,4 +87,12 @@ export class ProfileUpdateComponent implements OnInit {
       this.callUpdateMethod.emit(user);
     }
   }
+=======
+  imports: [],
+  templateUrl: './profile-update.component.html',
+  styleUrl: './profile-update.component.scss'
+})
+export class ProfileUpdateComponent {
+
+>>>>>>> parent of 491cac5 (Revert "Merge branch 'Presentacion2' into InstaDashLikes")
 }
