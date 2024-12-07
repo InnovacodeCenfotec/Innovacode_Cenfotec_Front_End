@@ -58,14 +58,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 footer{background-color: black;}
 
-
-
 .error-snackbar .mdc-snackbar__surface{
-  background-color: rgb(197, 49, 49) !important;
+  background-color: #8F34E6 !important;
+  color: #ecf3fa;
 }
 
 .success-snackbar .mdc-snackbar__surface{
-  background-color: rgb(54, 197, 49) !important;
+  background-color: #6595f6!important;
 }
 
 
