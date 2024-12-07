@@ -1,0 +1,103 @@
+/* General Container */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0000; /* Fondo oscuro */
+  color: #ffffff; /* Texto principal */
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center; /* Centrado completo */
+  align-items: center;
+  background-color: #0000; /* Fondo oscuro */
+  margin-top: 2rem;
+  padding: 1rem;
+
+  h1 {
+    font-size: 1.5rem;
+    color: #ff4081; /* Rosa brillante */
+    text-align: center; /* Asegura que el título esté centrado */
+  }
+}
+
+/* Grid Container */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas dinámicas */
+  gap: 1rem; /* Espacio entre elementos */
+  padding: 2rem;
+}
+
+/* Grid Item */
+.grid-item {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  position: relative; /* Necesario para el overlay */
+  margin: 10px auto;
+  width: 500px;
+
+  &:hover {
+    transform: scale(1.15); /* Zoom al hacer hover */
+    z-index: 10;
+  }
+}
+
+/* Grid Item grande (se expande más espacio en el grid) */
+.grid-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Imagen dentro del grid item */
+.grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay (capa sobre la imagen) */
+.overlay {
+  position: absolute;
+  inset: 0; /* Cubre todo el contenedor */
+  background-color: rgba(0, 0, 0, 0); /* Fondo transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 64, 129, 0.3); /* Fondo rosa transparente */
+    opacity: 1;
+  }
+
+  /* Botón de favoritos */
+  .favorite-btn {
+    background-color: #0000; /* Fondo oscuro */
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color: #ff4081; /* Rosa brillante */
+    transition: all 0.3s ease;
+
+    &.active {
+      color: #ffffff; /* Blanco */
+      background-color: #ff4081; /* Rosa brillante */
+    }
+
+    &:hover {
+      background-color: #ff4081; /* Rosa brillante */
+      color: #ffffff; /* Blanco */
+    }
+  }
+}
