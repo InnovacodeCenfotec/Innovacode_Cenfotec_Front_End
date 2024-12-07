@@ -1,8 +1,8 @@
 {
-  "hash": "62840366",
-  "configHash": "ff30393c",
-  "lockfileHash": "a5700e87",
-  "browserHash": "f94a5474",
+  "hash": "149e5fed",
+  "configHash": "60ea2cd3",
+  "lockfileHash": "d579c11e",
+  "browserHash": "53e0399d",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
@@ -67,7 +67,13 @@
     "angular-oauth2-oidc": {
       "src": "../../../../../node_modules/angular-oauth2-oidc/fesm2022/angular-oauth2-oidc.mjs",
       "file": "angular-oauth2-oidc.js",
-      "fileHash": "33f9653c",
+      "fileHash": "7489275b",
+      "needsInterop": false
+    },
+    "ngx-sharebuttons": {
+      "src": "../../../../../node_modules/ngx-sharebuttons/fesm2022/ngx-sharebuttons.mjs",
+      "file": "ngx-sharebuttons.js",
+      "fileHash": "442ab068",
       "needsInterop": false
     },
     "ngx-webcam": {
@@ -95,6 +101,9 @@
     },
     "chunk-V3FD5HXO": {
       "file": "chunk-V3FD5HXO.js"
+    },
+    "chunk-K2NDXIF7": {
+      "file": "chunk-K2NDXIF7.js"
     },
     "chunk-227N6YR3": {
       "file": "chunk-227N6YR3.js"
