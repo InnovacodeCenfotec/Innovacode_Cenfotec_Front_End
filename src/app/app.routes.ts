@@ -13,9 +13,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { CameraComponent } from './components/camera/camera.component';
+// import { CameraComponent } from './components/camera/camera.component';
 import { ProfileUpdateComponent } from './components/profile/profile-update/profile-update.component';
-import { GaleryComponent } from './pages/galery/galery.component';
+// import { GaleryComponent } from './pages/galery/galery.component';
 import { ApiComponent } from './components/api/api.component';
 import { TokenExpiredComponent } from './pages/token-expired/token-expired.component';
 
@@ -120,30 +120,6 @@ export const routes: Routes = [
             IRoleType.user,
           ],
           name: 'Contactenos',
-          showInSidebar: true
-        }
-      },
-      {
-        path: 'camara',
-        component: CameraComponent,
-        data: { 
-          authorities: [
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
-          name: 'Camara',
-          showInSidebar: true
-        }
-      },
-      {
-        path: 'galery',
-        component: GaleryComponent,
-        data: { 
-          authorities: [
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
-          name: 'Galeria',
           showInSidebar: true
         }
       },

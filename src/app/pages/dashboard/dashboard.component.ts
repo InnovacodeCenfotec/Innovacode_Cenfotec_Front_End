@@ -33,7 +33,7 @@ export class DashboardComponent {
     this.activeQuestion = this.activeQuestion === questionNumber ? null : questionNumber;
   }
   
-  magicBooth() {
+  mysterysRooms() {
     window.location.href = '/dashboard';
   }
   

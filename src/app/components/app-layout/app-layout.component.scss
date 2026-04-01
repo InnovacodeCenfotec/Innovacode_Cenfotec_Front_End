@@ -1,40 +1,66 @@
-// Colores base
-$primary-bg-color: #000000; 
-$primary-text-color: #ffffff;
-$secondary-bg-color: #ff0000;
-$footer-bg-color: #000000; 
+// 🎨 Paleta Mystery Rooms
+$primary-bg-color: #030810;   // Fondo principal
+$panel-bg-color: #07111f;     // Paneles y barras
+$card-bg-color: #0b1a2e;      // Tarjetas y modales
 
+$primary-text-color: #e0f7fa; // Texto principal
+$secondary-text-color: #b0bec5;
+$muted-text-color: #607d8b;
+$title-text-color: #ffffff;
+
+$color-cyan: #00e5ff;
+$color-cyan-muted: #00bcd4;
+$color-amber: #ffab00;
+$color-success: #00e676;
+$color-danger: #ff1744;
+$color-purple-ai: #ce93d8;
+
+// Bordes y glows
+$border-standard: rgba(0, 229, 255, 0.18);
+$border-hover: rgba(0, 229, 255, 0.4);
+$glow-cyan: 0 0 12px rgba(0,229,255,0.55), 0 0 30px rgba(0,229,255,0.2);
+
+// Layout general
 .page-wrapper {
   background-color: $primary-bg-color;
   color: $primary-text-color;
 
   .page-title h3 {
-    color: $primary-text-color;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: $title-text-color;
+    text-shadow: $glow-cyan;
   }
 }
 
 // Topbar
 app-topbar {
-  background-color: $primary-bg-color;
+  background-color: $panel-bg-color;
   color: $primary-text-color;
 }
 
 // Sidebar
 .sidebar-wrapper {
-  background-color: $primary-bg-color;
+  background-color: $panel-bg-color;
   color: $primary-text-color;
 
   a {
-    color: $primary-text-color;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $secondary-text-color;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+
     &:hover {
-      color: $secondary-bg-color;
+      color: $color-cyan;
+      text-shadow: $glow-cyan;
     }
   }
 }
 
 // Footer
 .footer {
- 
+  background-color: $panel-bg-color;
   padding: 20px 0;
   color: $primary-text-color;
   font-size: 14px;
@@ -47,35 +73,29 @@ app-topbar {
   max-width: 1200px;
 
   .logo {
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
-    font-weight: bold;
-    background: linear-gradient(to right, #4a90e2, #a64ca6);
-    -webkit-background-clip: text;
-    color: transparent;
+    font-weight: 700;
+    color: $title-text-color;
+    text-shadow: $glow-cyan;
     min-width: 250px;
-  }
-
-  .social-container {
-    max-width: 250px;
-    display: flex;
-    justify-content: center; 
-  }
-
-  .social-icons {
-    display: flex;
-    gap: 15px;
   }
 
   .social-icons svg {
     width: 20px;
     height: 20px;
-    fill: #a64ca6;
+    fill: $color-purple-ai;
     cursor: pointer;
+    transition: fill 0.3s ease;
+
+    &:hover {
+      fill: $color-cyan;
+    }
   }
 
   .copyright {
     font-size: 14px;
-    color: #ffffff;
+    color: $secondary-text-color;
     min-width: 250px;
     text-align: right;
     margin-bottom: 0;
@@ -84,28 +104,30 @@ app-topbar {
 
 // Botones y enlaces
 button, a {
-  background-color: $secondary-bg-color;
-  color: $primary-text-color;
-  border: none;
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background-color: transparent;
+  border: 1px solid $color-cyan;
+  color: $color-cyan;
   padding: 8px 12px;
   border-radius: 4px;
-  text-transform: uppercase;
-  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background-color: darken($secondary-bg-color, 10%);
+    background-color: rgba(0,229,255,0.1);
+    box-shadow: $glow-cyan;
   }
 }
 
-// Fondo y contenedores específicos
+// Fondo y contenedores
 .page-body,
 .page-body-wrapper,
 .container-fluid {
   background-color: $primary-bg-color;
 }
 
-// Ajustar tamaño y separación según el estilo de MagicBooth
 .page-title {
   padding: 20px 0;
 }
